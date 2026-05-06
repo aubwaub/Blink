@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blink — by jüb studio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: #2d3a2e;
+    overflow-x: hidden;
+    background: #d4ecf7;
+  }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  /* Sky */
+  .sky {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #7ec8e3 0%, #b5e3f5 40%, #d4ecf7 100%);
+  }
+
+  /* Mountains */
+  .mountains {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 55%;
+  }
+
+  .mountain {
+    position: absolute;
+    bottom: 0;
+    border-radius: 50% 50% 0 0;
+  }
+
+  .m1 { width: 120%; left: -10%; height: 45%; background: #1a2e5a; }
+  .m2 { width: 80%; left: -5%; height: 55%; background: #3d5a3e; }
+  .m3 { width: 70%; right: -10%; height: 50%; background: #2a4a6e; }
+  .m4 { width: 90%; left: 10%; height: 40%; background: #5a8c3e; }
+  .m5 { width: 60%; right: 5%; height: 35%; background: #7ab648; }
+  .m6 { width: 100%; left: 0; height: 20%; background: #4a7a2e; }
+
+  /* Clouds */
+  .cloud {
+    position: absolute;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50%;
+    animation: float 20s ease-in-out infinite;
+  }
+  .cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50%;
+  }
+
+  .c1 { width: 100px; height: 40px; top: 12%; left: 15%; animation-delay: 0s; }
+  .c1::before { width: 50px; height: 30px; top: -15px; left: 15px; }
+  .c1::after { width: 60px; height: 25px; top: -8px; left: 40px; }
+
+  .c2 { width: 130px; height: 45px; top: 8%; right: 20%; animation-delay: -7s; }
+  .c2::before { width: 65px; height: 35px; top: -18px; left: 20px; }
+  .c2::after { width: 75px; height: 30px; top: -10px; left: 50px; }
+
+  .c3 { width: 80px; height: 30px; top: 20%; left: 55%; animation-delay: -12s; }
+  .c3::before { width: 40px; height: 22px; top: -12px; left: 12px; }
+  .c3::after { width: 45px; height: 18px; top: -6px; left: 30px; }
+
+  .c4 { width: 110px; height: 38px; top: 15%; right: 45%; animation-delay: -4s; }
+  .c4::before { width: 55px; height: 28px; top: -14px; left: 18px; }
+  .c4::after { width: 60px; height: 22px; top: -7px; left: 42px; }
+
+  @keyframes float {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(30px); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+  }
+
+  .studio-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+
+  .logo-title {
+    font-size: 5rem;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    line-height: 1;
+    margin-bottom: 1rem;
+    letter-spacing: -2px;
+  }
+
+  .tagline {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.9);
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    z-index: 2;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.85rem;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  /* ═══ SECTIONS ═══ */
+  section {
+    padding: 5rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #2d5a3e;
+    margin-bottom: 1rem;
+  }
+
+  .section-body {
+    font-size: 1.05rem;
+    color: #4a5a4e;
+    line-height: 1.8;
+    max-width: 650px;
+    margin: 0 auto 2.5rem;
+  }
+
+  /* ═══ WHAT IS BLINK ═══ */
+  .about-section {
+    background: linear-gradient(180deg, #d4ecf7 0%, #e8f4e8 100%);
+  }
+
+  /* ═══ FEATURES ═══ */
+  .features {
+    background: #e8f4e8;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+  }
+
+  .feature-card:hover { transform: translateY(-4px); }
+
+  .feature-emoji {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .feature-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2d5a3e;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-desc {
+    font-size: 0.9rem;
+    color: #6a7a6e;
+    line-height: 1.6;
+  }
+
+  /* ═══ DEMO VIDEO ═══ */
+  .demo-section {
+    background: linear-gradient(180deg, #e8f4e8 0%, #f0f7e8 100%);
+  }
+
+  .video-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    background: #1a1a1a;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 1rem;
+  }
+
+  .video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .video-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .play-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  /* ═══ HOW IT WORKS ═══ */
+  .how-section {
+    background: #f0f7e8;
+  }
+
+  .steps {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .step {
+    flex: 1;
+    min-width: 160px;
+    max-width: 200px;
+  }
+
+  .step-num {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #5a8c3e;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+
+  .step-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2d5a3e;
+    margin-bottom: 0.4rem;
+  }
+
+  .step-desc {
+    font-size: 0.85rem;
+    color: #6a7a6e;
+    line-height: 1.5;
+  }
+
+  /* ═══ TEAM ═══ */
+  .team-section {
+    background: linear-gradient(180deg, #f0f7e8 0%, #d4ecf7 100%);
+  }
+
+  .team-row {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .team-member {
+    text-align: center;
+  }
+
+  .team-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #5a8c3e;
+    margin: 0 auto 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+  }
+
+  .team-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #2d5a3e;
+  }
+
+  .team-role {
+    font-size: 0.85rem;
+    color: #6a7a6e;
+  }
+
+  /* ═══ FOOTER ═══ */
+  footer {
+    background: #1a2e5a;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 2.5rem 2rem;
+    font-size: 0.85rem;
+  }
+
+  footer .footer-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 0.3rem;
+  }
+
+  footer .footer-sub {
+    margin-bottom: 1rem;
+  }
+
+  footer .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 600px) {
+    .logo-title { font-size: 3.5rem; }
+    .tagline { font-size: 1rem; }
+    .section-title { font-size: 1.6rem; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .steps { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-bg">
+    <div class="sky"></div>
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+    <div class="cloud c3"></div>
+    <div class="cloud c4"></div>
+    <div class="mountains">
+      <div class="mountain m1"></div>
+      <div class="mountain m3"></div>
+      <div class="mountain m2"></div>
+      <div class="mountain m4"></div>
+      <div class="mountain m5"></div>
+      <div class="mountain m6"></div>
+    </div>
+  </div>
+  <div class="hero-content">
+    <div class="studio-name">jüb studio</div>
+    <div class="logo-title">blink</div>
+    <p class="tagline">Give consciousness to the overlooked objects around you. Photograph anything — and watch it open its eyes.</p>
+  </div>
+  <div class="scroll-hint">↓ scroll to explore</div>
+</div>
+
+<!-- ═══ WHAT IS BLINK ═══ -->
+<section class="about-section">
+  <h2 class="section-title">What is Blink?</h2>
+  <p class="section-body">
+    Blink is an AR comfort companion that brings everyday objects to life.
+    A mug, a shoe, a stuffed animal — photograph it, give it a personality,
+    and it becomes something that talks to you, gets hungry, remembers if you
+    showed up yesterday, and genuinely misses you when you're gone.
+  </p>
+  <p class="section-body">
+    It's not an assistant. It's not trying to help. It's just… there.
+    And somehow, that's exactly what you needed.
+  </p>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section class="features">
+  <h2 class="section-title">What Makes It Different</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-emoji">🎭</div>
+      <div class="feature-title">36 Personalities</div>
+      <div class="feature-desc">Pick two traits from nine — shy + humorous, sassy + warm — and watch a unique character emerge.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">🍽️</div>
+      <div class="feature-title">Feed It</div>
+      <div class="feature-desc">Show it your meals. It has opinions. Skip a day and it gets moody. The weather inside changes.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">⏳</div>
+      <div class="feature-title">Scarcity</div>
+      <div class="feature-desc">Five-minute conversations. Three-hour cooldowns. You can't talk whenever you want — and that's the point.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-emoji">💚</div>
+      <div class="feature-title">Growing Bond</div>
+      <div class="feature-desc">Stranger → companion → close friend → soulmate. The relationship changes how it speaks to you.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DEMO ═══ -->
+<section class="demo-section">
+  <h2 class="section-title">See It in Action</h2>
+  <p class="section-body">Watch a one-minute demo of Blink bringing an everyday object to life.</p>
+  <div class="video-wrapper">
+    <!-- Replace this div with an iframe when you have a video URL: -->
+    <!-- <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
+    <div class="video-placeholder">
+      <div class="play-icon">▶</div>
+      <span>Demo video coming soon</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="how-section">
+  <h2 class="section-title">How It Works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">Photograph</div>
+      <div class="step-desc">Take a photo of any object. Blink auto-extracts it from the background.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">Personalize</div>
+      <div class="step-desc">Give it a name, pick its eyes and mouth, choose two personality traits.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">Meet</div>
+      <div class="step-desc">Your object appears in AR — alive, blinking, and ready to talk.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-title">Bond</div>
+      <div class="step-desc">Feed it, talk to it, come back tomorrow. The relationship grows.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TEAM ═══ -->
+<section class="team-section">
+  <h2 class="section-title">The Team</h2>
+  <p class="section-body">Made with care at Brown & RISD MADE, 2026.</p>
+  <div class="team-row">
+    <div class="team-member">
+      <div class="team-avatar">S</div>
+      <div class="team-name">Sage Rebellou</div>
+      <div class="team-role">UI/UX Designer<br>Animator<br>Illustrator</div>
+    </div>
+    <div class="team-member">
+      <div class="team-avatar">A</div>
+      <div class="team-name">Aubrey Wang</div>
+      <div class="team-role">Software Developer<br>Experience Architect<br>Prompt Engineer</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-title">blink</div>
+  <div class="footer-sub">jüb studio · Brown & RISD MADE 2026</div>
+  <div class="footer-copy">© 2026 jüb studio. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
