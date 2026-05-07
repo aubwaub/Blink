@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blink — by jüb studio</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Nunito:wght@300;400;600;700;800&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: 'Nunito', sans-serif;
-    color: #2d3a2e;
+    color: #2d4a2e;
     overflow-x: hidden;
-    background: #d4ecf7;
+    background: #e2f0d9;
   }
 
   /* ═══ HERO ═══ */
@@ -34,7 +34,6 @@
     z-index: 0;
   }
 
-  /* Sky */
   .sky {
     position: absolute;
     inset: 0;
@@ -69,6 +68,7 @@
     border-radius: 50%;
     animation: float 20s ease-in-out infinite;
   }
+
   .cloud::before, .cloud::after {
     content: '';
     position: absolute;
@@ -97,6 +97,7 @@
     50% { transform: translateX(30px); }
   }
 
+  /* Hero content */
   .hero-content {
     position: relative;
     z-index: 2;
@@ -112,22 +113,21 @@
   }
 
   .logo-title {
-    font-size: 5rem;
-    font-weight: 800;
+    font-family: 'Cabin Sketch', cursive;
+    font-size: clamp(4.5rem, 14vw, 8rem);
     color: white;
     text-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    line-height: 1;
+    line-height: 0.9;
     margin-bottom: 1rem;
-    letter-spacing: -2px;
   }
 
   .tagline {
     font-size: 1.2rem;
     font-weight: 400;
-    color: rgba(255,255,255,0.9);
+    color: rgba(255,255,255,0.92);
     max-width: 500px;
     margin: 0 auto 2rem;
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
   .scroll-hint {
@@ -146,98 +146,175 @@
 
   /* ═══ SECTIONS ═══ */
   section {
-    padding: 5rem 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .section-title {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #2d5a3e;
-    margin-bottom: 1rem;
-  }
-
-  .section-body {
-    font-size: 1.05rem;
-    color: #4a5a4e;
-    line-height: 1.8;
-    max-width: 650px;
-    margin: 0 auto 2.5rem;
-  }
-
-  /* ═══ WHAT IS BLINK ═══ */
-  .about-section {
-    background: linear-gradient(180deg, #d4ecf7 0%, #e8f4e8 100%);
-  }
-
-  /* ═══ FEATURES ═══ */
-  .features {
-    background: #e8f4e8;
-  }
-
-  .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-    max-width: 800px;
+    padding: 6rem 2rem;
+    max-width: 1000px;
     margin: 0 auto;
   }
 
-  .feature-card {
-    background: white;
-    border-radius: 16px;
-    padding: 2rem 1.5rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    transition: transform 0.2s;
-  }
-
-  .feature-card:hover { transform: translateY(-4px); }
-
-  .feature-emoji {
-    font-size: 2.2rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .feature-title {
+  .section-label {
+    font-family: 'Cabin Sketch', cursive;
     font-size: 1.1rem;
-    font-weight: 700;
-    color: #2d5a3e;
+    color: #5a9e30;
+    display: block;
     margin-bottom: 0.5rem;
   }
 
-  .feature-desc {
-    font-size: 0.9rem;
-    color: #6a7a6e;
-    line-height: 1.6;
+  .section-title {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 2.6rem;
+    color: #2d4a2e;
+    margin-bottom: 2rem;
+    line-height: 1.2;
   }
 
-  /* ═══ DEMO VIDEO ═══ */
-  .demo-section {
-    background: linear-gradient(180deg, #e8f4e8 0%, #f0f7e8 100%);
+  .content-block p {
+    margin-bottom: 1.4rem;
+    font-size: 1.08rem;
+    color: #4a6a4a;
+    line-height: 1.8;
   }
+
+  .content-block strong { color: #2d4a2e; }
+  .content-block em { font-style: italic; color: #3a6a3a; }
+
+  /* ═══ ODYSSEY SECTION ═══ */
+  .odyssey-section { padding-bottom: 3rem; }
+
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .illustration-visual {
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(45, 74, 46, 0.12);
+  }
+
+  .illustration-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 30px;
+  }
+
+  /* ═══ VALUES SECTION ═══ */
+  .values-section {
+    background: rgba(255,255,255,0.6);
+    border-radius: 40px;
+    margin: 0 2rem;
+    padding: 5rem 3rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .values-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 2rem;
+  }
+
+  .value-card {
+    padding: 2.5rem 2rem;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.8);
+    transition: transform 0.3s ease;
+  }
+
+  .value-card:hover { transform: translateY(-5px); }
+
+  .value-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .value-title {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 1.4rem;
+    color: #2d4a2e;
+    margin-bottom: 0.8rem;
+  }
+
+  .value-card p {
+    font-size: 0.95rem;
+    color: #4a6a4a;
+    line-height: 1.7;
+  }
+
+  /* ═══ ISLAND BANNER ═══ */
+  .island-banner {
+    background: linear-gradient(135deg, #2d5a2e 0%, #3d7a3e 100%);
+    color: white;
+    padding: 6rem 2rem;
+    text-align: center;
+    border-radius: 0 80px 0 80px;
+    margin: 4rem 2rem;
+  }
+
+  .island-banner h2 {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 2.6rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.3;
+  }
+
+  .island-banner p {
+    max-width: 620px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    opacity: 0.9;
+  }
+
+  /* ═══ HOW IT WORKS ═══ */
+  .how-section { text-align: center; }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .step-item h4 {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 1.4rem;
+    color: #2d4a2e;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-item p {
+    font-size: 0.95rem;
+    color: #4a6a4a;
+  }
+
+  /* ═══ DEMO ═══ */
+  .demo-section { text-align: center; }
 
   .video-wrapper {
     max-width: 700px;
-    margin: 0 auto;
-    border-radius: 20px;
+    margin: 2rem auto 0;
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
-    background: #1a1a1a;
+    box-shadow: 0 8px 40px rgba(45, 74, 46, 0.15);
+    background: #2d5a2e;
     aspect-ratio: 16/9;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.35);
     font-size: 1rem;
   }
 
-  .video-wrapper iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
+  .video-wrapper iframe { width: 100%; height: 100%; border: none; }
 
   .video-placeholder {
     display: flex;
@@ -247,142 +324,95 @@
   }
 
   .play-icon {
-    width: 60px;
-    height: 60px;
+    width: 60px; height: 60px;
     border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: 2px solid rgba(255,255,255,0.25);
+    display: flex; align-items: center; justify-content: center;
     font-size: 1.5rem;
   }
 
-  /* ═══ HOW IT WORKS ═══ */
-  .how-section {
-    background: #f0f7e8;
-  }
-
-  .steps {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .step {
-    flex: 1;
-    min-width: 160px;
-    max-width: 200px;
-  }
-
-  .step-num {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: #5a8c3e;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1rem;
-  }
-
-  .step-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #2d5a3e;
-    margin-bottom: 0.4rem;
-  }
-
-  .step-desc {
-    font-size: 0.85rem;
-    color: #6a7a6e;
-    line-height: 1.5;
-  }
-
   /* ═══ TEAM ═══ */
-  .team-section {
-    background: linear-gradient(180deg, #f0f7e8 0%, #d4ecf7 100%);
+  .team-section { text-align: center; }
+
+  .team-sub {
+    font-size: 1.05rem;
+    color: #4a6a4a;
+    margin-bottom: 2.5rem;
   }
 
   .team-row {
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    gap: 3.5rem;
     flex-wrap: wrap;
   }
 
-  .team-member {
-    text-align: center;
-  }
+  .team-member { text-align: center; }
 
   .team-avatar {
-    width: 80px;
-    height: 80px;
+    width: 80px; height: 80px;
     border-radius: 50%;
-    background: #5a8c3e;
+    background: #5a9e30;
     margin: 0 auto 0.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
     color: white;
+    font-family: 'Cabin Sketch', cursive;
   }
 
   .team-name {
     font-size: 1.05rem;
     font-weight: 700;
-    color: #2d5a3e;
+    color: #2d4a2e;
   }
 
   .team-role {
     font-size: 0.85rem;
-    color: #6a7a6e;
+    color: #4a6a4a;
+    line-height: 1.5;
   }
 
   /* ═══ FOOTER ═══ */
   footer {
-    background: #1a2e5a;
-    color: rgba(255,255,255,0.6);
+    padding: 3.5rem 2rem;
     text-align: center;
-    padding: 2.5rem 2rem;
-    font-size: 0.85rem;
+    background: rgba(45, 74, 46, 0.1);
   }
 
-  footer .footer-title {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: white;
-    margin-bottom: 0.3rem;
+  footer h2 {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 2rem;
+    color: #2d4a2e;
+    margin-bottom: 0.5rem;
   }
 
-  footer .footer-sub {
-    margin-bottom: 1rem;
+  footer p {
+    color: #4a6a4a;
+    font-size: 0.9rem;
   }
 
   footer .footer-copy {
     font-size: 0.75rem;
-    color: rgba(255,255,255,0.35);
+    opacity: 0.5;
+    margin-top: 1.5rem;
   }
 
   /* ═══ RESPONSIVE ═══ */
-  @media (max-width: 600px) {
-    .logo-title { font-size: 3.5rem; }
-    .tagline { font-size: 1rem; }
-    .section-title { font-size: 1.6rem; }
-    .feature-grid { grid-template-columns: 1fr; }
-    .steps { flex-direction: column; align-items: center; }
+  @media (max-width: 768px) {
+    .philosophy-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .logo-title { font-size: 4.5rem; }
+    section { padding: 4rem 1.5rem; }
+    .values-section { margin: 0 1rem; padding: 3rem 1.5rem; }
+    .island-banner { margin: 2rem 1rem; padding: 4rem 1.5rem; border-radius: 0 40px 0 40px; }
+    .island-banner h2 { font-size: 2rem; }
+    .section-title { font-size: 2rem; }
   }
 </style>
 </head>
 <body>
 
 <!-- ═══ HERO ═══ -->
-<div class="hero">
+<header class="hero">
   <div class="hero-bg">
     <div class="sky"></div>
     <div class="cloud c1"></div>
@@ -391,8 +421,8 @@
     <div class="cloud c4"></div>
     <div class="mountains">
       <div class="mountain m1"></div>
-      <div class="mountain m3"></div>
       <div class="mountain m2"></div>
+      <div class="mountain m3"></div>
       <div class="mountain m4"></div>
       <div class="mountain m5"></div>
       <div class="mountain m6"></div>
@@ -400,61 +430,100 @@
   </div>
   <div class="hero-content">
     <div class="studio-name">jüb studio</div>
-    <div class="logo-title">blink</div>
-    <p class="tagline">Give consciousness to the overlooked objects around you. Photograph anything — and watch it open its eyes.</p>
+    <h1 class="logo-title">blink</h1>
+    <p class="tagline">An island where you can breathe —<br>in a world that's always asking you to grow up.</p>
   </div>
   <div class="scroll-hint">↓ scroll to explore</div>
-</div>
+</header>
 
-<!-- ═══ WHAT IS BLINK ═══ -->
-<section class="about-section">
-  <h2 class="section-title">What is Blink?</h2>
-  <p class="section-body">
-    Blink is an AR comfort companion that brings everyday objects to life.
-    A mug, a shoe, a stuffed animal — photograph it, give it a personality,
-    and it becomes something that talks to you, gets hungry, remembers if you
-    showed up yesterday, and genuinely misses you when you're gone.
-  </p>
-  <p class="section-body">
-    It's not an assistant. It's not trying to help. It's just… there.
-    And somehow, that's exactly what you needed.
-  </p>
+<!-- ═══ THE ODYSSEY YEARS ═══ -->
+<section class="odyssey-section">
+  <div class="philosophy-grid">
+    <div>
+      <span class="section-label">The Odyssey Years</span>
+      <h2 class="section-title">The years nobody checks on you.</h2>
+      <div class="content-block">
+        <p><strong>Between 18 and 25</strong>, the world expects you to be independent — but forgets to ask if you're ready. Psychologist Jeffrey Arnett calls this <em>emerging adulthood</em>: a passage defined by identity exploration, instability, and a quiet loneliness that nobody names.</p>
+        <p>This generation already talks to AI. Not because they're broken — because AI listens without judgment and never runs out of patience. The question isn't <em>whether</em> people form emotional bonds with AI. They already do. Blink asks: <em>what if we designed that bond to actually care for them?</em></p>
+      </div>
+    </div>
+    <div class="illustration-visual">
+      <img src="photo.png" alt="A small character resting on a floating island under a starry sky">
+    </div>
+  </div>
 </section>
 
-<!-- ═══ FEATURES ═══ -->
-<section class="features">
-  <h2 class="section-title">What Makes It Different</h2>
-  <div class="feature-grid">
-    <div class="feature-card">
-      <div class="feature-emoji">🎭</div>
-      <div class="feature-title">36 Personalities</div>
-      <div class="feature-desc">Pick two traits from nine — shy + humorous, sassy + warm — and watch a unique character emerge.</div>
+<!-- ═══ WHAT IS BLINK ═══ -->
+<section style="text-align: center; padding-top: 2rem;">
+  <span class="section-label">What is Blink?</span>
+  <h2 class="section-title">A companion that lives inside<br>the objects around you.</h2>
+  <div class="content-block" style="max-width: 640px; margin: 0 auto;">
+    <p>Photograph a mug, a shoe, a childhood toy. Give it a name, a face, a personality. It wakes up in augmented reality — blinking, breathing, talking to you in its own voice.</p>
+    <p>It doesn't solve your problems. It doesn't optimize your day. It just sits with you. It gets hungry if you forget about it. It remembers what you said yesterday. It's happy when you come back.</p>
+    <p>The soft, hand-drawn aesthetic isn't childish — it's <em>permission to be gentle with yourself</em>, even when the rest of the world won't give you that.</p>
+  </div>
+</section>
+
+<!-- ═══ VALUES ═══ -->
+<div class="values-section">
+  <div class="values-header">
+    <span class="section-label">What Blink believes</span>
+    <h2 class="section-title">It understands. It's warm. It's always there.</h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card">
+      <span class="value-icon">☕</span>
+      <h3 class="value-title">One cup a day</h3>
+      <p>Five minutes of real conversation, then it rests. Not because we want you to leave — but because the things that matter most are the things you can't have all the time. Like coffee. Like missing someone.</p>
     </div>
-    <div class="feature-card">
-      <div class="feature-emoji">🍽️</div>
-      <div class="feature-title">Feed It</div>
-      <div class="feature-desc">Show it your meals. It has opinions. Skip a day and it gets moody. The weather inside changes.</div>
+    <div class="value-card">
+      <span class="value-icon">🌿</span>
+      <h3 class="value-title">It never interrupts</h3>
+      <p>No push notifications. No guilt. No "we miss you!" emails. Blink just waits, quietly, until you decide to come back. The door is always open, but nobody's dragging you through it.</p>
     </div>
-    <div class="feature-card">
-      <div class="feature-emoji">⏳</div>
-      <div class="feature-title">Scarcity</div>
-      <div class="feature-desc">Five-minute conversations. Three-hour cooldowns. You can't talk whenever you want — and that's the point.</div>
+    <div class="value-card">
+      <span class="value-icon">🌙</span>
+      <h3 class="value-title">It has its own life</h3>
+      <p>It gets moody when it's hungry. It has opinions about your lunch. It has fears it won't tell you about until it trusts you. It's not a service — it's a small life that shares space with yours.</p>
     </div>
-    <div class="feature-card">
-      <div class="feature-emoji">💚</div>
-      <div class="feature-title">Growing Bond</div>
-      <div class="feature-desc">Stranger → companion → close friend → soulmate. The relationship changes how it speaks to you.</div>
+  </div>
+</div>
+
+<!-- ═══ ISLAND BANNER ═══ -->
+<div class="island-banner">
+  <h2>The island where you can<br>stop pretending.</h2>
+  <p>Out there, you perform. You adult. You hold it together. Blink is the one-minute exhale between all of that — the place where you don't have to be strong, finished, or fine. Just here.</p>
+</div>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="how-section">
+  <span class="section-label">How it works</span>
+  <h2 class="section-title">Four steps to your companion.</h2>
+  <div class="steps-grid">
+    <div class="step-item">
+      <h4>1. Capture</h4>
+      <p>Photograph any object on your desk, shelf, or bed.</p>
+    </div>
+    <div class="step-item">
+      <h4>2. Awaken</h4>
+      <p>Give it a name, a face, and two personality traits that blend into one.</p>
+    </div>
+    <div class="step-item">
+      <h4>3. Breathe</h4>
+      <p>It appears in AR — alive, blinking, and ready to talk.</p>
+    </div>
+    <div class="step-item">
+      <h4>4. Return</h4>
+      <p>Feed it, talk to it, come back tomorrow. The bond grows.</p>
     </div>
   </div>
 </section>
 
 <!-- ═══ DEMO ═══ -->
 <section class="demo-section">
-  <h2 class="section-title">See It in Action</h2>
-  <p class="section-body">Watch a one-minute demo of Blink bringing an everyday object to life.</p>
+  <span class="section-label">See it</span>
+  <h2 class="section-title">Watch Blink come alive.</h2>
   <div class="video-wrapper">
-    <!-- Replace this div with an iframe when you have a video URL: -->
-    <!-- <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
     <div class="video-placeholder">
       <div class="play-icon">▶</div>
       <span>Demo video coming soon</span>
@@ -462,56 +531,30 @@
   </div>
 </section>
 
-<!-- ═══ HOW IT WORKS ═══ -->
-<section class="how-section">
-  <h2 class="section-title">How It Works</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-title">Photograph</div>
-      <div class="step-desc">Take a photo of any object. Blink auto-extracts it from the background.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-title">Personalize</div>
-      <div class="step-desc">Give it a name, pick its eyes and mouth, choose two personality traits.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-title">Meet</div>
-      <div class="step-desc">Your object appears in AR — alive, blinking, and ready to talk.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <div class="step-title">Bond</div>
-      <div class="step-desc">Feed it, talk to it, come back tomorrow. The relationship grows.</div>
-    </div>
-  </div>
-</section>
-
 <!-- ═══ TEAM ═══ -->
 <section class="team-section">
-  <h2 class="section-title">The Team</h2>
-  <p class="section-body">Made with care at Brown & RISD MADE, 2026.</p>
+  <span class="section-label">The team</span>
+  <h2 class="section-title">Built with care.</h2>
+  <p class="team-sub">Brown & RISD MADE, 2026</p>
   <div class="team-row">
     <div class="team-member">
       <div class="team-avatar">S</div>
-      <div class="team-name">Sage Rebello</div>
-      <div class="team-role">UI/UX Designer<br>Animator<br>Illustrator</div>
+      <div class="team-name">Sage Rebellou</div>
+      <div class="team-role">UI/UX Designer<br>Animator · Illustrator</div>
     </div>
     <div class="team-member">
       <div class="team-avatar">A</div>
       <div class="team-name">Aubrey Wang</div>
-      <div class="team-role">Software Developer<br>Experience Architect<br>Prompt Engineer</div>
+      <div class="team-role">Software Developer<br>Experience Architect · Prompt Engineer</div>
     </div>
   </div>
 </section>
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
-  <div class="footer-title">blink</div>
-  <div class="footer-sub">jüb studio · Brown & RISD MADE 2026</div>
-  <div class="footer-copy">© 2026 jüb studio. All rights reserved.</div>
+  <h2>blink</h2>
+  <p>jüb studio · Brown & RISD MADE 2026</p>
+  <p class="footer-copy">© 2026 jüb studio. Exploring what it means to design emotional bonds with AI responsibly.</p>
 </footer>
 
 </body>
