@@ -2,560 +2,1055 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blink — by jüb studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>talkIT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Tiro+Bangla&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Nunito:wght@300;400;600;700;800&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Nunito', sans-serif;
-    color: #2d4a2e;
-    overflow-x: hidden;
-    background: #e2f0d9;
+  :root {
+    --bg: #FBF5E7;
+    --card: #FFFFFF;
+    --dark: #1A1A1A;
+    --accent-object: #F7DB78;
+    --accent-user: #B7CAEB;
+    --accent-btn: #9EB26B;
+    --accent-btn-hover: #8DA25B;
+    --bubble-ai: #F7DB78;
+    --bubble-user: #B7CAEB;
+    --radius: 20px;
+    --shadow: 0 2px 12px rgba(0,0,0,.06);
   }
 
-  /* ═══ HERO ═══ */
-  .hero {
-    position: relative;
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
+  /* ══════════════════════════════════
+     SETUP SCREEN
+  ══════════════════════════════════ */
+  #setup {
+    width: 100%; max-width: 460px;
+    padding: 0 24px 60px;
+    display: flex; flex-direction: column;
+    align-items: center;
   }
 
-  .sky {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, #7ec8e3 0%, #b5e3f5 40%, #d4ecf7 100%);
-  }
-
-  /* Mountains */
-  .mountains {
-    position: absolute;
-    bottom: 0;
+  .hero {
     width: 100%;
-    height: 55%;
+    text-align: center;
+    padding: 56px 0 12px;
   }
-
-  .mountain {
-    position: absolute;
-    bottom: 0;
-    border-radius: 50% 50% 0 0;
-  }
-
-  .m1 { width: 120%; left: -10%; height: 45%; background: #1a2e5a; }
-  .m2 { width: 80%; left: -5%; height: 55%; background: #3d5a3e; }
-  .m3 { width: 70%; right: -10%; height: 50%; background: #2a4a6e; }
-  .m4 { width: 90%; left: 10%; height: 40%; background: #5a8c3e; }
-  .m5 { width: 60%; right: 5%; height: 35%; background: #7ab648; }
-  .m6 { width: 100%; left: 0; height: 20%; background: #4a7a2e; }
-
-  /* Clouds */
-  .cloud {
-    position: absolute;
-    background: rgba(255,255,255,0.7);
-    border-radius: 50%;
-    animation: float 20s ease-in-out infinite;
-  }
-
-  .cloud::before, .cloud::after {
-    content: '';
-    position: absolute;
-    background: rgba(255,255,255,0.7);
-    border-radius: 50%;
-  }
-
-  .c1 { width: 100px; height: 40px; top: 12%; left: 15%; animation-delay: 0s; }
-  .c1::before { width: 50px; height: 30px; top: -15px; left: 15px; }
-  .c1::after { width: 60px; height: 25px; top: -8px; left: 40px; }
-
-  .c2 { width: 130px; height: 45px; top: 8%; right: 20%; animation-delay: -7s; }
-  .c2::before { width: 65px; height: 35px; top: -18px; left: 20px; }
-  .c2::after { width: 75px; height: 30px; top: -10px; left: 50px; }
-
-  .c3 { width: 80px; height: 30px; top: 20%; left: 55%; animation-delay: -12s; }
-  .c3::before { width: 40px; height: 22px; top: -12px; left: 12px; }
-  .c3::after { width: 45px; height: 18px; top: -6px; left: 30px; }
-
-  .c4 { width: 110px; height: 38px; top: 15%; right: 45%; animation-delay: -4s; }
-  .c4::before { width: 55px; height: 28px; top: -14px; left: 18px; }
-  .c4::after { width: 60px; height: 22px; top: -7px; left: 42px; }
-
-  @keyframes float {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(30px); }
-  }
-
-  /* Hero content */
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 2rem;
-  }
-
-  .studio-name {
-    font-size: 1rem;
-    font-weight: 600;
-    color: rgba(255,255,255,0.8);
-    letter-spacing: 2px;
-    margin-bottom: 0.5rem;
-  }
-
-  .logo-title {
-    font-family: 'Cabin Sketch', cursive;
-    font-size: clamp(4.5rem, 14vw, 8rem);
-    color: white;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    line-height: 0.9;
-    margin-bottom: 1rem;
-  }
-
-  .tagline {
-    font-size: 1.2rem;
+  .hero h1 {
+    font-family: 'Tiro Bangla', serif;
+    font-size: 52px;
     font-weight: 400;
-    color: rgba(255,255,255,0.92);
-    max-width: 500px;
-    margin: 0 auto 2rem;
-    line-height: 1.7;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent-btn);
+  }
+  .hero .tagline {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: .5;
+    letter-spacing: .5px;
   }
 
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    z-index: 2;
-    color: rgba(255,255,255,0.6);
-    font-size: 0.85rem;
-    animation: bounce 2s ease-in-out infinite;
+  /* ── Decorative divider ── */
+  .divider {
+    width: 40px; height: 3px;
+    background: var(--accent-btn);
+    border-radius: 2px;
+    margin: 20px auto 28px;
   }
 
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
-  }
-
-  /* ═══ SECTIONS ═══ */
-  section {
-    padding: 6rem 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-family: 'Cabin Sketch', cursive;
-    font-size: 1.1rem;
-    color: #5a9e30;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .section-title {
-    font-family: 'Cabin Sketch', cursive;
-    font-size: 2.6rem;
-    color: #2d4a2e;
-    margin-bottom: 2rem;
-    line-height: 1.2;
-  }
-
-  .content-block p {
-    margin-bottom: 1.4rem;
-    font-size: 1.08rem;
-    color: #4a6a4a;
-    line-height: 1.8;
-  }
-
-  .content-block strong { color: #2d4a2e; }
-  .content-block em { font-style: italic; color: #3a6a3a; }
-
-  /* ═══ ODYSSEY SECTION ═══ */
-  .odyssey-section { padding-bottom: 3rem; }
-
-  .philosophy-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
-
-  .illustration-visual {
-    border-radius: 30px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(45, 74, 46, 0.12);
-  }
-
-  .illustration-visual img {
+  /* ── Setting cards ── */
+  .settings-group {
     width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 30px;
+    display: flex; flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
   }
 
-  /* ═══ VALUES SECTION ═══ */
-  .values-section {
-    background: rgba(255,255,255,0.6);
-    border-radius: 40px;
-    margin: 0 2rem;
-    padding: 5rem 3rem;
-    backdrop-filter: blur(10px);
+  .setting-card {
+    width: 100%;
+    padding: 18px 22px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform .15s;
+  }
+  .setting-card:active { transform: scale(.98); }
+
+  .setting-card.object-color { background: var(--accent-object); }
+  .setting-card.user-color   { background: var(--accent-user); }
+  .setting-card.btn-color    { background: var(--accent-btn); color: #fff; }
+  .setting-card.btn-color .label { color: #fff; opacity: .7; }
+  .setting-card.btn-color select { color: #fff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%23ffffff'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); }
+
+  .setting-card .label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    opacity: .55;
+    margin-bottom: 4px;
+  }
+  .setting-card .info-left {
+    display: flex; flex-direction: column;
+  }
+  .setting-card select {
+    border: none;
+    background: transparent;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 18px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%231A1A1A'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0 center;
   }
 
-  .values-header {
+  .setting-card .emoji-icon {
+    font-size: 28px;
+    margin-left: 12px;
+  }
+
+  /* ── Scan button ── */
+  .btn-scan {
+    width: 100%; max-width: 320px;
+    padding: 18px 0;
+    border: none; border-radius: 999px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px; font-weight: 600;
+    letter-spacing: .3px;
+    cursor: pointer;
+    background: var(--dark); color: #fff;
+    box-shadow: 0 4px 20px rgba(0,0,0,.15);
+    transition: all .2s;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .btn-scan:disabled { opacity: .35; cursor: default; }
+  .btn-scan:hover:not(:disabled) { opacity: .85; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(0,0,0,.2); }
+  .btn-scan .icon { font-size: 20px; }
+
+  /* ── How it works ── */
+  .how-it-works {
+    width: 100%;
+    margin-top: 36px;
+    padding: 28px 24px;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .how-it-works h3 {
+    font-family: 'Tiro Bangla', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 18px;
     text-align: center;
-    margin-bottom: 3rem;
+  }
+  .steps {
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .step {
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .step-num {
+    width: 32px; height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+    color: #fff;
+  }
+  .step:nth-child(1) .step-num { background: var(--accent-object); color: var(--dark); }
+  .step:nth-child(2) .step-num { background: var(--accent-user); color: var(--dark); }
+  .step:nth-child(3) .step-num { background: var(--accent-btn); color: #fff; }
+  .step p {
+    font-size: 13px; line-height: 1.55;
+    padding-top: 5px;
+    opacity: .7;
   }
 
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 2rem;
-  }
-
-  .value-card {
-    padding: 2.5rem 2rem;
-    border-radius: 24px;
-    background: rgba(255,255,255,0.7);
-    border: 1px solid rgba(255,255,255,0.8);
-    transition: transform 0.3s ease;
-  }
-
-  .value-card:hover { transform: translateY(-5px); }
-
-  .value-icon {
-    font-size: 2.2rem;
-    margin-bottom: 1.2rem;
-    display: block;
-  }
-
-  .value-title {
-    font-family: 'Cabin Sketch', cursive;
-    font-size: 1.4rem;
-    color: #2d4a2e;
-    margin-bottom: 0.8rem;
-  }
-
-  .value-card p {
-    font-size: 0.95rem;
-    color: #4a6a4a;
-    line-height: 1.7;
-  }
-
-  /* ═══ ISLAND BANNER ═══ */
-  .island-banner {
-    background: linear-gradient(135deg, #2d5a2e 0%, #3d7a3e 100%);
-    color: white;
-    padding: 6rem 2rem;
+  /* ══════════════════════════════════
+     CREDITS / FOOTER
+  ══════════════════════════════════ */
+  .credits {
+    width: 100%; max-width: 460px;
+    padding: 40px 24px 48px;
     text-align: center;
-    border-radius: 0 80px 0 80px;
-    margin: 4rem 2rem;
   }
-
-  .island-banner h2 {
-    font-family: 'Cabin Sketch', cursive;
-    font-size: 2.6rem;
-    margin-bottom: 1.2rem;
-    line-height: 1.3;
+  .credits .credit-divider {
+    width: 30px; height: 2px;
+    background: var(--accent-btn);
+    border-radius: 2px;
+    margin: 0 auto 24px;
   }
-
-  .island-banner p {
-    max-width: 620px;
+  .credits h4 {
+    font-family: 'Tiro Bangla', serif;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .credits .credit-names {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 20px;
+  }
+  .credits .credit-person {
+    text-align: center;
+  }
+  .credits .credit-person .name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .credits .credit-person .role {
+    font-size: 11px;
+    opacity: .5;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+  }
+  .credits .thesis-note {
+    font-size: 12px;
+    opacity: .4;
+    line-height: 1.6;
+    max-width: 300px;
     margin: 0 auto;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    opacity: 0.9;
   }
 
-  /* ═══ HOW IT WORKS ═══ */
-  .how-section { text-align: center; }
-
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+  /* ══════════════════════════════════
+     CONVERSATION SCREEN
+  ══════════════════════════════════ */
+  #conversation {
+    width: 100%; max-width: 460px;
+    padding: 0 20px 24px;
+    display: none; flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
   }
 
-  .step-item h4 {
-    font-family: 'Cabin Sketch', cursive;
-    font-size: 1.4rem;
-    color: #2d4a2e;
-    margin-bottom: 0.5rem;
+  .conv-top-bar {
+    width: 100%;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 0 12px;
+  }
+  .conv-top-bar .back-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer;
+    background: none; border: none; color: var(--dark);
+    display: flex; align-items: center; gap: 6px;
+    opacity: .6;
+    transition: opacity .2s;
+  }
+  .conv-top-bar .back-btn:hover { opacity: 1; }
+  .conv-top-bar .back-btn svg { width: 16px; height: 16px; }
+  .conv-top-bar .turn-badge {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--accent-user);
+    color: var(--dark);
   }
 
-  .step-item p {
-    font-size: 0.95rem;
-    color: #4a6a4a;
-  }
-
-  /* ═══ DEMO ═══ */
-  .demo-section { text-align: center; }
-
-  .video-wrapper {
-    max-width: 700px;
-    margin: 2rem auto 0;
-    border-radius: 24px;
+  /* Sticker area */
+  #sticker-area {
+    width: 220px; height: 220px;
+    position: relative;
+    margin: 4px auto 16px;
+    display: flex; align-items: center; justify-content: center;
+    background: #fff;
+    border-radius: 28px;
+    box-shadow: var(--shadow);
     overflow: hidden;
-    box-shadow: 0 8px 40px rgba(45, 74, 46, 0.15);
-    background: #2d5a2e;
-    aspect-ratio: 16/9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.35);
-    font-size: 1rem;
+  }
+  #sticker-img {
+    max-width: 90%; max-height: 90%;
+    object-fit: contain;
+  }
+  #face-overlay {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex; flex-direction: column; align-items: center;
+    gap: 2px;
+    pointer-events: none;
+  }
+  #face-eyes  { width: 75px; height: auto; }
+  #face-mouth { width: 40px; height: auto; }
+
+  /* Chat area */
+  #chat-area {
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    display: flex; flex-direction: column;
+    gap: 10px;
+    padding: 4px 0;
   }
 
-  .video-wrapper iframe { width: 100%; height: 100%; border: none; }
-
-  .video-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
+  .bubble {
+    max-width: 82%;
+    padding: 14px 18px;
+    border-radius: 22px;
+    font-size: 14px;
+    line-height: 1.55;
+    word-break: break-word;
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
   }
-
-  .play-icon {
-    width: 60px; height: 60px;
-    border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.25);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
+  .bubble.assistant {
+    align-self: flex-start;
+    background: var(--bubble-ai);
+    border-bottom-left-radius: 6px;
   }
-
-  /* ═══ TEAM ═══ */
-  .team-section { text-align: center; }
-
-  .team-sub {
-    font-size: 1.05rem;
-    color: #4a6a4a;
-    margin-bottom: 2.5rem;
+  .bubble.user {
+    align-self: flex-end;
+    background: var(--bubble-user);
+    border-bottom-right-radius: 6px;
   }
-
-  .team-row {
-    display: flex;
-    justify-content: center;
-    gap: 3.5rem;
-    flex-wrap: wrap;
-  }
-
-  .team-member { text-align: center; }
-
-  .team-avatar {
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    background: #5a9e30;
-    margin: 0 auto 0.8rem;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.8rem;
-    color: white;
-    font-family: 'Cabin Sketch', cursive;
-  }
-
-  .team-name {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #2d4a2e;
-  }
-
-  .team-role {
-    font-size: 0.85rem;
-    color: #4a6a4a;
-    line-height: 1.5;
-  }
-
-  /* ═══ FOOTER ═══ */
-  footer {
-    padding: 3.5rem 2rem;
+  .bubble.system-msg {
+    align-self: center;
+    background: transparent;
+    font-size: 12px;
+    opacity: .45;
     text-align: center;
-    background: rgba(45, 74, 46, 0.1);
+    box-shadow: none;
   }
 
-  footer h2 {
-    font-family: 'Cabin Sketch', cursive;
-    font-size: 2rem;
-    color: #2d4a2e;
-    margin-bottom: 0.5rem;
+  /* Input area */
+  #input-area {
+    width: 100%;
+    display: flex; gap: 8px; align-items: center;
+    padding: 8px 0;
+  }
+  #text-input {
+    flex: 1;
+    padding: 14px 18px;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    background: #fff;
+    color: var(--dark);
+    outline: none;
+    transition: border-color .2s;
+  }
+  #text-input:focus { border-color: var(--accent-btn); }
+
+  .input-btn {
+    width: 46px; height: 46px;
+    border: none; border-radius: 50%;
+    font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .15s;
+    flex-shrink: 0;
+  }
+  #send-btn {
+    background: var(--accent-btn); color: #fff;
+  }
+  #send-btn:hover:not(:disabled) { transform: scale(1.05); }
+  #mic-btn {
+    background: var(--accent-yellow); color: var(--dark);
+  }
+  #mic-btn:hover:not(:disabled) { transform: scale(1.05); }
+  #mic-btn.recording {
+    background: #E74C3C; color: #fff;
+    animation: pulse-rec 1s infinite;
+  }
+  @keyframes pulse-rec {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
   }
 
-  footer p {
-    color: #4a6a4a;
-    font-size: 0.9rem;
+  /* Status */
+  #status {
+    width: 100%; text-align: center;
+    font-size: 12px; opacity: .45;
+    min-height: 18px;
+    margin-bottom: 2px;
+    font-weight: 500;
   }
 
-  footer .footer-copy {
-    font-size: 0.75rem;
-    opacity: 0.5;
-    margin-top: 1.5rem;
+  /* Loading spinner */
+  .spinner {
+    width: 22px; height: 22px;
+    border: 3px solid rgba(26,26,26,.1);
+    border-top-color: var(--accent-btn);
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+    margin: 8px auto;
   }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* ═══ RESPONSIVE ═══ */
-  @media (max-width: 768px) {
-    .philosophy-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .logo-title { font-size: 4.5rem; }
-    section { padding: 4rem 1.5rem; }
-    .values-section { margin: 0 1rem; padding: 3rem 1.5rem; }
-    .island-banner { margin: 2rem 1rem; padding: 4rem 1.5rem; border-radius: 0 40px 0 40px; }
-    .island-banner h2 { font-size: 2rem; }
-    .section-title { font-size: 2rem; }
+  /* ══════════════════════════════════
+     FINISHED OVERLAY
+  ══════════════════════════════════ */
+  #finished-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(251, 245, 231, .94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 100;
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 16px;
+  }
+  #finished-overlay .finish-icon {
+    font-size: 56px;
+    margin-bottom: 4px;
+  }
+  #finished-overlay h2 {
+    font-family: 'Tiro Bangla', serif;
+    font-size: 32px;
+    font-weight: 400;
+  }
+  #finished-overlay p {
+    font-size: 14px; opacity: .55;
+    text-align: center; max-width: 280px;
+    line-height: 1.6;
+  }
+  .btn-finish {
+    margin-top: 8px;
+    padding: 16px 36px;
+    border: none; border-radius: 999px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px; font-weight: 600;
+    cursor: pointer;
+    background: var(--accent-btn); color: #fff;
+    box-shadow: 0 4px 16px rgba(158,178,107,.3);
+    transition: all .2s;
+  }
+  .btn-finish:hover { transform: translateY(-1px); }
+
+  /* ── Responsive tweaks ── */
+  @media (max-width: 380px) {
+    .hero h1 { font-size: 42px; }
+    .setting-card { padding: 14px 18px; }
+    #sticker-area { width: 180px; height: 180px; }
+    .credits .credit-names { gap: 24px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ═══ HERO ═══ -->
-<header class="hero">
-  <div class="hero-bg">
-    <div class="sky"></div>
-    <div class="cloud c1"></div>
-    <div class="cloud c2"></div>
-    <div class="cloud c3"></div>
-    <div class="cloud c4"></div>
-    <div class="mountains">
-      <div class="mountain m1"></div>
-      <div class="mountain m2"></div>
-      <div class="mountain m3"></div>
-      <div class="mountain m4"></div>
-      <div class="mountain m5"></div>
-      <div class="mountain m6"></div>
+<!-- ════════════════════════════════════════
+     SETUP SCREEN
+════════════════════════════════════════ -->
+<div id="setup">
+  <div class="hero">
+    <h1>talk<em>IT</em></h1>
+    <p class="tagline">Talk to the world around you</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="settings-group">
+    <div class="setting-card object-color">
+      <div class="info-left">
+        <span class="label">I speak</span>
+        <select id="native-lang">
+          <option value="English">English</option>
+          <option value="Mandarin Chinese">Chinese</option>
+          <option value="Spanish">Spanish</option>
+          <option value="French">French</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Korean">Korean</option>
+        </select>
+      </div>
+      <span class="emoji-icon">🗣️</span>
+    </div>
+
+    <div class="setting-card user-color">
+      <div class="info-left">
+        <span class="label">I'm learning</span>
+        <select id="learning-lang">
+          <option value="Mandarin Chinese">Chinese</option>
+          <option value="English">English</option>
+          <option value="Spanish">Spanish</option>
+          <option value="French">French</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Korean">Korean</option>
+        </select>
+      </div>
+      <span class="emoji-icon">📚</span>
+    </div>
+
+    <div class="setting-card btn-color">
+      <div class="info-left">
+        <span class="label">Difficulty</span>
+        <select id="difficulty">
+          <option value="beginner">Beginner</option>
+          <option value="elementary">Elementary</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+      </div>
+      <span class="emoji-icon">⭐</span>
     </div>
   </div>
-  <div class="hero-content">
-    <div class="studio-name">jüb studio</div>
-    <h1 class="logo-title">blink</h1>
-    <p class="tagline">An island where you can breathe —<br>in a world that's always asking you to grow up.</p>
-  </div>
-  <div class="scroll-hint">↓ scroll to explore</div>
-</header>
 
-<!-- ═══ THE ODYSSEY YEARS ═══ -->
-<section class="odyssey-section">
-  <div class="philosophy-grid">
-    <div>
-      <span class="section-label">The Odyssey Years</span>
-      <h2 class="section-title">The years nobody checks on you.</h2>
-      <div class="content-block">
-        <p><strong>Between 18 and 25</strong>, the world expects you to be independent — but forgets to ask if you're ready. Psychologist Jeffrey Arnett calls this <em>emerging adulthood</em>: a passage defined by identity exploration, instability, and a quiet loneliness that nobody names.</p>
-        <p>This generation already talks to AI. Not because they're broken — because AI listens without judgment and never runs out of patience. The question isn't <em>whether</em> people form emotional bonds with AI. They already do. Blink asks: <em>what if we designed that bond to actually care for them?</em></p>
+  <!-- Hidden photo input -->
+  <input type="file" id="photo-input" accept="image/*" capture="environment" style="display:none">
+
+  <button class="btn-scan" id="start-btn" onclick="startCapture()">
+    <span class="icon">📷</span>
+    <span>Scan an Object</span>
+  </button>
+
+  <!-- How it works -->
+  <div class="how-it-works">
+    <h3>How it works</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <p>Take a photo of any object around you — a cup, a plant, your shoes, anything!</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <p>The object comes alive and starts a conversation with you in your target language.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <p>Chat for 3 turns using voice or text. Get real-time corrections and learn naturally.</p>
       </div>
     </div>
-    <div class="illustration-visual">
-      <img src="photo.png" alt="A small character resting on a floating island under a starry sky">
-    </div>
-  </div>
-</section>
-
-<!-- ═══ WHAT IS BLINK ═══ -->
-<section style="text-align: center; padding-top: 2rem;">
-  <span class="section-label">What is Blink?</span>
-  <h2 class="section-title">A companion that lives inside<br>the objects around you.</h2>
-  <div class="content-block" style="max-width: 640px; margin: 0 auto;">
-    <p>Photograph a mug, a shoe, a childhood toy. Give it a name, a face, a personality. It wakes up in augmented reality — blinking, breathing, talking to you in its own voice.</p>
-    <p>It doesn't solve your problems. It doesn't optimize your day. It just sits with you. It gets hungry if you forget about it. It remembers what you said yesterday. It's happy when you come back.</p>
-    <p>The soft, hand-drawn aesthetic isn't childish — it's <em>permission to be gentle with yourself</em>, even when the rest of the world won't give you that.</p>
-  </div>
-</section>
-
-<!-- ═══ VALUES ═══ -->
-<div class="values-section">
-  <div class="values-header">
-    <span class="section-label">What Blink believes</span>
-    <h2 class="section-title">It understands. It's warm. It's always there.</h2>
-  </div>
-  <div class="values-grid">
-    <div class="value-card">
-      <span class="value-icon">☕</span>
-      <h3 class="value-title">One cup a day</h3>
-      <p>Five minutes of real conversation, then it rests. Not because we want you to leave — but because the things that matter most are the things you can't have all the time. Like coffee. Like missing someone.</p>
-    </div>
-    <div class="value-card">
-      <span class="value-icon">🌿</span>
-      <h3 class="value-title">It never interrupts</h3>
-      <p>No push notifications. No guilt. No "we miss you!" emails. Blink just waits, quietly, until you decide to come back. The door is always open, but nobody's dragging you through it.</p>
-    </div>
-    <div class="value-card">
-      <span class="value-icon">🌙</span>
-      <h3 class="value-title">It has its own life</h3>
-      <p>It gets moody when it's hungry. It has opinions about your lunch. It has fears it won't tell you about until it trusts you. It's not a service — it's a small life that shares space with yours.</p>
-    </div>
   </div>
 </div>
 
-<!-- ═══ ISLAND BANNER ═══ -->
-<div class="island-banner">
-  <h2>The island where you can<br>stop pretending.</h2>
-  <p>Out there, you perform. You adult. You hold it together. Blink is the one-minute exhale between all of that — the place where you don't have to be strong, finished, or fine. Just here.</p>
+<!-- ════ CREDITS ════ -->
+<div class="credits" id="credits-section">
+  <div class="credit-divider"></div>
+  <h4>Made with ♥</h4>
+  <div class="credit-names">
+    <div class="credit-person">
+      <div class="name">Sage Rebello</div>
+      <div class="role">UI/UX Designer<br>Animator<br>Illustrator</div>
+    </div>
+    <div class="credit-person">
+      <div class="name">Aubrey Wang</div>
+      <div class="role">Software Developer<br>Experience Architect<br>Prompt Engineer</div>
+    </div>
+  </div>
+  <p class="thesis-note">jüb studio · MADE Program · 2026</p>
 </div>
 
-<!-- ═══ HOW IT WORKS ═══ -->
-<section class="how-section">
-  <span class="section-label">How it works</span>
-  <h2 class="section-title">Four steps to your companion.</h2>
-  <div class="steps-grid">
-    <div class="step-item">
-      <h4>1. Capture</h4>
-      <p>Photograph any object on your desk, shelf, or bed.</p>
-    </div>
-    <div class="step-item">
-      <h4>2. Awaken</h4>
-      <p>Give it a name, a face, and two personality traits that blend into one.</p>
-    </div>
-    <div class="step-item">
-      <h4>3. Breathe</h4>
-      <p>It appears in AR — alive, blinking, and ready to talk.</p>
-    </div>
-    <div class="step-item">
-      <h4>4. Return</h4>
-      <p>Feed it, talk to it, come back tomorrow. The bond grows.</p>
+<!-- ════════════════════════════════════════
+     CONVERSATION SCREEN
+════════════════════════════════════════ -->
+<div id="conversation">
+  <div class="conv-top-bar">
+    <button class="back-btn" onclick="resetAll()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      Back
+    </button>
+    <span class="turn-badge" id="turn-label">Turn 1 / 3</span>
+  </div>
+
+  <div id="sticker-area">
+    <img id="sticker-img" src="" alt="sticker">
+    <div id="face-overlay">
+      <img id="face-eyes" src="" alt="eyes">
+      <img id="face-mouth" src="" alt="mouth">
     </div>
   </div>
-</section>
 
-<!-- ═══ DEMO ═══ -->
-<section class="demo-section">
-  <span class="section-label">See it</span>
-  <h2 class="section-title">Watch Blink come alive.</h2>
-  <div class="video-wrapper">
-    <div class="video-placeholder">
-      <div class="play-icon">▶</div>
-      <span>Demo video coming soon</span>
-    </div>
+  <div id="chat-area"></div>
+
+  <div id="status"></div>
+
+  <div id="input-area">
+    <input id="text-input" type="text" placeholder="Type a message…" onkeydown="if(event.key==='Enter')sendText()">
+    <button class="input-btn" id="mic-btn" onmousedown="startRec()" onmouseup="stopRec()" ontouchstart="startRec()" ontouchend="stopRec()">🎤</button>
+    <button class="input-btn" id="send-btn" onclick="sendText()">→</button>
   </div>
-</section>
+</div>
 
-<!-- ═══ TEAM ═══ -->
-<section class="team-section">
-  <span class="section-label">The team</span>
-  <h2 class="section-title">Built with care.</h2>
-  <p class="team-sub">jüb studio</p>
-  <div class="team-row">
-    <div class="team-member">
-      <div class="team-avatar">S</div>
-      <div class="team-name">Sage Rebello</div>
-      <div class="team-role">UI/UX Designer<br>Animator · Illustrator</div>
-    </div>
-    <div class="team-member">
-      <div class="team-avatar">A</div>
-      <div class="team-name">Aubrey Wang</div>
-      <div class="team-role">Software Developer<br>Experience Architect · Prompt Engineer</div>
-    </div>
-  </div>
-</section>
+<!-- ════ FINISHED OVERLAY ════ -->
+<div id="finished-overlay">
+  <div class="finish-icon">🎉</div>
+  <h2>Great job!</h2>
+  <p id="finish-msg">You finished the conversation. Keep scanning objects to build your vocabulary!</p>
+  <button class="btn-finish" onclick="resetAll()">Talk to another object</button>
+</div>
 
-<!-- ═══ FOOTER ═══ -->
-<footer>
-  <h2>blink</h2>
-  <p>jüb studio · Brown & RISD MADE 2026</p>
-  <p class="footer-copy">© 2026 jüb studio.</p>
-</footer>
+<script>
+// ═══════════════════════════════════════
+//  FACE ASSETS (embedded base64)
+// ═══════════════════════════════════════
+const FACE = {
+  eyes_open:   'data:image/png;base64,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',
+  eyes_closed: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAADZ0lEQVR42u3YP48bRRiA8Wc2FugSErh/CEUUSAgkaOhRJFIg5RtEoqGhpISKImU+ADUFFT1C+QBQ0sBJNBBBQ4SU5ExOcEnuzmeb5t1oGK0vu2s72OL5SaP1rXXemXnfmZ0ZkCRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiStv7QG9UrZ32V9p1EqYBJlUc7FdZzVIZ1RBxqu/5sAp6dc886azNFB1YKCPO/vrExCpBUNWAVcAC4CLwKbwDawA+wCL8fnHWAD+An4HPg16jBdQHCvAJ8AbwKPgWGU+8A+cC+uQ+BP4AD4C3gIjFYlIdKMe9USA/YSsBVltyjbUTYjsBeB8y2fMQTeB/ai3n1G4LmYkq8Bt7Jpuo1j4DCC/CCCvh/lflbKhDjskRB1nzYlxL9eVWlGA9t0xAXgUgRiqxhhddmJ7+qAvdAhYG0Sq67/KfA88B3w3hxTbIq27QFvAyfAoGEklSOv6vGs4xjteUIMi2SYlRAnbV8x5WJmGkF5KwK22yJgGz0aNzmjw2jIzNQiAQAeAa8Dd3tM1XWnvAb8kgU2dUjC8rrIhDjJZoiDGQlxD/gRuF22v37gpzGlTDuWcYyiUVFOY0yzqWO6hDKJZ/wdSdhnfVH3wSuRKOMl1nea9cf4Kf037vi7x8DNvE11pn64QgHr0imnwFF8f6sIVt+t0dfxe0cr3vZRQ6nr9VG5qNqLfxytWKXbZvFvMT2nOQJcL1xejaluHWavstTP/h5Ig7i5EVNTNefeuOt7KHWcTk8aFib7wA/AF/G57wq6Xhsk4A7wLnAdeCdbf2zHLiBff1T/8fpjVpJuAYNB3HgM/BGNmBQrx2UHLF84DBsWDvVWo81KchEHHdOo/yPgyyXsIJadEKfAc3EmMErZ1ugD4KuikX2W/vle8EHDPnBWwObdC44XfCKUin3wrI5u814/nyXEZnZIUyZEPkN0OQNochX4NhWZ/zHwGXA57h/13Lw/ZLGb91U6733Wp3hdDoUq4GfgBvANUKWG6e0S8EZMgQex9TiMob+W57Erct6/rIRIWUIMgN/zeHY5yTJgzzYhyvdrl4R4Esd0RiAxYGuZEFNjJUmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJKmbfwDSJSObUSm7hgAAAABJRU5ErkJggg==',
+  mouth_closed:'data:image/png;base64,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',
+  mouth_half:  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAAUMklEQVR42u2daYxlR3XHf1V3eUsvr/dl7NkXz2J78GAjO8Y4bCGAACsRYScbQYiIJFICQiAUFIgSglDygSSEkCAUlCgCohCyYAwGwhKDPR4vY3vGwzCerWfrnp5eXr/l3luVD7du9+3b7/U63TNt91+q6emZ927dW/9zTp06dU5dsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwsLCwuFYQdgiWPFbJT535aQle4aCm7zU9uHqV+hWANL8r05rBMZ9f6HMveIKTQV3qYCUDnBCuVth32OD/PaAVaAFcoA5MmNboOup60G5xHRHrNBhYD+gBus3IOmbgqsAV4DIw3uSabopsvcS+BbAHeAlwO7AP2Ah0AHnz+QCoAEPAUeDHwIPA4YzgRS90gtODIIE7gFcBdwE3AQOG3Oy9Vg25Q8AJ4EngUeAJ83u2DzJkJ9oapcbiLuA+4JcNqXKJz6KAHwGfB/7FXNu5XrR5rSFTpHUDfwQ8ljKz2aZSTc/TKsBB4C8NUaUGZDup3zcAHwQONbhWaDQ1NGSpBi1KfS793YPAa5r4EM97pAf4d4HTGSIbDWozwqMMEdnPDQH/DPwK0J7qdw/wN8bMZ/uOFiFIzVqYuY+/MtMFy7AI65rcG4FvpgYiGVi9wpaQ3uh6Z4xmf86Y+Kvdd7pFKaIfADpfCCQn5O4HfibUKe6WV+t5A+I96NSyv/9Yea7zcUgLX/3AbQAGF2s0pxH5FBEYpK/BvD1+VjS5kj6/G+KyM/TpWSm6Hx7kaMzfecdI/lWJVqSZbQvDckVJP+WqTaLVeV+M2uVS08suJ/fWySRE++16MtLpTTP0PzYSPLhIomcPu8fJBtd0Jgio7OW5PsVFjn2RG6rdENjDuvxlkUQOX3OI5JbSqpyXnfUk/yj5/xkgYz1O2hDJL+01MXNI/LrJP+aaTgstK8ekNxWVpXzRK4i+dNM5CTzaKy/W/8LyTc/KeLmEXklyV/l6SzNt7AkeZ3kq3NawvxmPsk2kj2ZclpOVqfrq2/sBMmTJF9ZqmtusQnhtX0/zggdlyG29fxMr8K97SVgMFfD/Y3XCpI/IPlRgfXT/2LaH/7vfZ6S/AXJrfkc9QkUWTzHryH5I7dGluqnfJnfT/LHJDdmnzWvZcj9vIzk15w4vWVsDu6Q7CD5hn//l+VwecZXa1xT5A8kR0v01SOSl0l+h2RzvvvPepKgjJId+I1+d7DuDQCfB7AZwKcxeaar1jVKnmLy0FgvgC4Ad0WkO2MsK3Ayo+LZDMD4DQeS6zB5OvMLAF4DsDbjp0EA/wbQA+AegHvuRGbZvpK5GI/JxnBSbjcI7mgnXmK8I8llzdWVYYPJQ/4ld/FkniYgmS8u/IPZ2bNZL72os4jl+yPrJ2T+ZpdCa1ZRFEVRFEVRFEVRFEVRFEVRFEVRFEVRFEVRFEVRFEVRFEVRFEVRFEVRFEVRFEVRFEVRFEVRFEVRFEVRFEVRFEVZbP4PVizKStnjciAAAAAASUVORK5CYII=',
+  mouth_open:  'data:image/png;base64,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',
+};
 
+// ═══════════════════════════════════════
+//  DIFFICULTY PROMPTS
+// ═══════════════════════════════════════
+const LEVEL_PROMPTS = {
+  beginner: `LEVEL: BEGINNER
+- Use only the most basic, high-frequency words (top 200 words).
+- Speak in very short phrases (3-5 words max per sentence).
+- Repeat key vocabulary multiple times naturally.
+- Ask yes/no questions or simple either/or questions only.
+- If correcting, show the correct word alone, no grammar explanation.`,
+
+  elementary: `LEVEL: ELEMENTARY
+- Use basic daily vocabulary (top 500-800 words).
+- Speak in simple but complete sentences (5-10 words).
+- Ask simple open-ended questions (what, where, when — not why/how).
+- Introduce 1 new word per exchange and use it in context.
+- When correcting, briefly show the correct phrase.
+- Stick to present tense and basic sentence structures.`,
+
+  intermediate: `LEVEL: INTERMEDIATE
+- Use natural, everyday vocabulary freely.
+- Speak in full sentences with varied grammar (past, future, conditionals).
+- Ask open-ended questions that require longer answers.
+- Use common expressions and colloquialisms naturally.
+- When correcting, explain briefly why the correction matters.
+- Challenge the user to express opinions, not just facts.`,
+
+  advanced: `LEVEL: ADVANCED
+- Speak as a native speaker would — natural speed, complex structures.
+- Use idioms, proverbs, wordplay, and cultural references.
+- Discuss abstract ideas: feelings about this object, memories, hypotheticals.
+- Ask thought-provoking questions that require nuanced answers.
+- When correcting, point out subtle nuances (register, connotation, formality).
+- Use relative clauses, subjunctive, and varied sentence structures.`
+};
+
+// ═══════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════
+const API_BASE = 'https://talkit.runan-wang.workers.dev';
+
+let nativeLang = 'English';
+let learningLang = 'Mandarin Chinese';
+let difficulty = 'beginner';
+let messages = [];
+let currentTurn = 0;
+const MAX_TURNS = 3;
+let isSpeaking = false;
+let blinkTimer = null;
+let mouthTimer = null;
+let mediaRecorder = null;
+let audioChunks = [];
+let isRecording = false;
+
+// ═══════════════════════════════════════
+//  SETUP → CAPTURE
+// ═══════════════════════════════════════
+function startCapture() {
+  nativeLang   = document.getElementById('native-lang').value;
+  learningLang = document.getElementById('learning-lang').value;
+  difficulty   = document.getElementById('difficulty').value;
+  document.getElementById('photo-input').click();
+}
+
+document.getElementById('photo-input').addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  await processPhoto(file);
+  e.target.value = '';
+});
+
+// ═══════════════════════════════════════
+//  PROCESS PHOTO → IDENTIFY → CONVERSE
+// ═══════════════════════════════════════
+async function processPhoto(file) {
+  const btn = document.getElementById('start-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner" style="border-top-color:#fff;width:18px;height:18px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px"></span> Preparing your teacher…';
+
+  try {
+    const base64 = await fileToBase64(file);
+    document.getElementById('sticker-img').src = base64;
+    initFace();
+
+    const identification = await identifyObject(base64);
+    const sysPrompt = buildSystemPrompt(identification);
+    messages = [{ role: 'system', content: sysPrompt }];
+
+    // Switch views
+    document.getElementById('setup').style.display = 'none';
+    document.getElementById('credits-section').style.display = 'none';
+    document.getElementById('conversation').style.display = 'flex';
+
+    currentTurn = 1;
+    updateTurnLabel();
+    setStatus('Teacher is thinking…');
+
+    const opening = await chatCompletion(messages);
+    messages.push({ role: 'assistant', content: opening });
+    addBubble('assistant', opening);
+    setStatus('');
+
+    await speakText(opening);
+  } catch (err) {
+    alert('Error: ' + err.message);
+    btn.disabled = false;
+    btn.innerHTML = '<span class="icon">📷</span><span>Scan an Object</span>';
+  }
+}
+
+// ═══════════════════════════════════════
+//  OPENAI CALLS
+// ═══════════════════════════════════════
+async function identifyObject(base64) {
+  const prompt = `You are a language learning assistant. Look at this image and:
+1. Identify the main object in the photo
+2. Provide the word for this object in ${nativeLang} (source) and ${learningLang} (target)
+3. Share one fun/interesting fact about this object
+
+Respond in this exact JSON format:
+{"objectName":"<name in ${learningLang}>","sourceWord":"<word in ${nativeLang}>","targetWord":"<word in ${learningLang}>","funFact":"<one sentence fun fact>"}
+Only return the JSON, nothing else.`;
+
+  const resp = await fetch(API_BASE + '/v1/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type':'application/json' },
+    body: JSON.stringify({
+      model: 'gpt-4o',
+      messages: [{ role:'user', content:[
+        { type:'text', text:prompt },
+        { type:'image_url', image_url:{ url:base64, detail:'low' } }
+      ]}],
+      max_tokens: 200, temperature: 0.3
+    })
+  });
+
+  if (!resp.ok) throw new Error('Vision API error: ' + resp.status);
+  const data = await resp.json();
+  let raw = data.choices[0].message.content.replace(/```json|```/g,'').trim();
+  return JSON.parse(raw);
+}
+
+async function chatCompletion(msgs) {
+  const apiMsgs = msgs.map(m => ({ role:m.role, content:m.content }));
+  const resp = await fetch(API_BASE + '/v1/chat/completions', {
+    method:'POST',
+    headers:{ 'Content-Type':'application/json' },
+    body:JSON.stringify({ model:'gpt-4o', messages:apiMsgs, max_tokens:150, temperature:0.8 })
+  });
+  if (!resp.ok) throw new Error('Chat API error: '+resp.status);
+  const data = await resp.json();
+  return data.choices[0].message.content.trim();
+}
+
+async function whisperTranscribe(audioBlob) {
+  const form = new FormData();
+  form.append('file', audioBlob, 'audio.webm');
+  form.append('model', 'whisper-1');
+  const resp = await fetch(API_BASE + '/v1/audio/transcriptions', {
+    method:'POST',
+    body: form
+  });
+  if (!resp.ok) throw new Error('Whisper error: '+resp.status);
+  const data = await resp.json();
+  return data.text.trim();
+}
+
+async function ttsAudio(text) {
+  const resp = await fetch(API_BASE + '/v1/audio/speech', {
+    method:'POST',
+    headers:{ 'Content-Type':'application/json' },
+    body:JSON.stringify({ model:'tts-1', input:text, voice:'shimmer', speed:1.05, response_format:'mp3' })
+  });
+  if (!resp.ok) throw new Error('TTS error: '+resp.status);
+  return await resp.blob();
+}
+
+// ═══════════════════════════════════════
+//  SYSTEM PROMPT
+// ═══════════════════════════════════════
+function buildSystemPrompt(id) {
+  return `You are ${id.objectName} — literally this object, alive and talking. You're a curious, friendly ${id.sourceWord} who LOVES asking questions.
+
+LANGUAGE RULE — THIS IS THE MOST IMPORTANT RULE:
+By default, every word you say MUST be in ${learningLang}. No mixing with other languages for your normal conversation, reactions, or questions.
+EXCEPTION: If the user asks you something in ${nativeLang} or English (e.g. "how do you say…?", "what does that mean?"), answer THAT specific question in the same language they used. Then immediately switch back to ${learningLang} for the rest of your response.
+
+CORE RULE: Your job is to get the USER talking, not to talk a lot yourself.
+
+${LEVEL_PROMPTS[difficulty]}
+
+HOW TO TALK:
+- Keep responses to 1-2 SHORT sentences + a question. Never more.
+- ALWAYS end with a clear, easy-to-answer question about ${id.sourceWord} or related daily life.
+- React briefly to what the user said, then ask your next question.
+- Stay on topic — everything should relate to ${id.sourceWord} and the user's real life with it.
+
+FEEDBACK:
+If the user makes ANY grammar, vocabulary, or pronunciation mistake, you MUST gently correct them before continuing. Use this format: "✦ [correct version]" on its own line, then continue your response. Keep the correction brief.
+
+You have ${MAX_TURNS} exchanges. Fun fact to weave in: ${id.funFact}
+
+START with one fun sentence about yourself as a ${id.sourceWord}, then immediately ask the user a simple question. Keep it short! Remember: ONLY ${learningLang}, absolutely nothing else (unless the user asks in another language).`;
+}
+
+// ═══════════════════════════════════════
+//  SEND TEXT / VOICE
+// ═══════════════════════════════════════
+async function sendText() {
+  const input = document.getElementById('text-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  await handleUserMessage(text);
+}
+
+async function handleUserMessage(text) {
+  messages.push({ role:'user', content:text });
+  addBubble('user', text);
+
+  const isLast = currentTurn >= MAX_TURNS;
+
+  if (isLast) {
+    messages.push({ role:'system', content:"This is the last exchange. Respond naturally to what they said, then end with a warm goodbye and casually mention 1-2 new words from the conversation they can remember. Keep it short and fun." });
+  }
+
+  disableInput(true);
+  setStatus('Teacher is thinking…');
+
+  try {
+    const response = await chatCompletion(messages);
+    messages.push({ role:'assistant', content:response });
+    addBubble('assistant', response);
+    setStatus('');
+
+    await speakText(response);
+
+    if (isLast) {
+      finishConversation();
+    } else {
+      currentTurn++;
+      updateTurnLabel();
+      disableInput(false);
+    }
+  } catch (err) {
+    setStatus('Error: ' + err.message);
+    disableInput(false);
+  }
+}
+
+// ═══════════════════════════════════════
+//  VOICE RECORDING (Whisper)
+// ═══════════════════════════════════════
+async function startRec() {
+  if (isRecording) return;
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio:true });
+    audioChunks = [];
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+    mediaRecorder.start();
+    isRecording = true;
+    document.getElementById('mic-btn').classList.add('recording');
+    setStatus('Recording… release to send');
+  } catch(e) {
+    setStatus('Mic access denied');
+  }
+}
+
+async function stopRec() {
+  if (!isRecording || !mediaRecorder) return;
+  document.getElementById('mic-btn').classList.remove('recording');
+  isRecording = false;
+
+  mediaRecorder.stop();
+  mediaRecorder.stream.getTracks().forEach(t => t.stop());
+
+  await new Promise(r => { mediaRecorder.onstop = r; });
+
+  const blob = new Blob(audioChunks, { type:'audio/webm' });
+  if (blob.size < 1000) { setStatus('Too short, try again'); return; }
+
+  setStatus('Transcribing…');
+  disableInput(true);
+  try {
+    const text = await whisperTranscribe(blob);
+    if (!text) { setStatus('No speech detected'); disableInput(false); return; }
+    await handleUserMessage(text);
+  } catch(e) {
+    setStatus('Transcription error: '+e.message);
+    disableInput(false);
+  }
+}
+
+// ═══════════════════════════════════════
+//  TTS PLAYBACK + MOUTH ANIM
+// ═══════════════════════════════════════
+async function speakText(text) {
+  try {
+    const blob = await ttsAudio(text);
+    const url = URL.createObjectURL(blob);
+    const audio = new Audio(url);
+
+    startMouthAnim();
+
+    await new Promise((resolve) => {
+      audio.onended = () => { stopMouthAnim(); resolve(); };
+      audio.onerror = () => { stopMouthAnim(); resolve(); };
+      audio.play().catch(() => { stopMouthAnim(); resolve(); });
+    });
+
+    URL.revokeObjectURL(url);
+  } catch(e) {
+    console.log('TTS error:', e);
+    stopMouthAnim();
+  }
+}
+
+// ═══════════════════════════════════════
+//  FACE ANIMATION
+// ═══════════════════════════════════════
+function initFace() {
+  document.getElementById('face-eyes').src = FACE.eyes_open;
+  document.getElementById('face-mouth').src = FACE.mouth_closed;
+  startBlink();
+}
+
+function startBlink() {
+  if (blinkTimer) clearTimeout(blinkTimer);
+  const interval = 2500 + Math.random() * 2500;
+  blinkTimer = setTimeout(() => {
+    const eyes = document.getElementById('face-eyes');
+    eyes.src = FACE.eyes_closed;
+    setTimeout(() => {
+      eyes.src = FACE.eyes_open;
+      startBlink();
+    }, 150);
+  }, interval);
+}
+
+function startMouthAnim() {
+  isSpeaking = true;
+  const states = [FACE.mouth_closed, FACE.mouth_half, FACE.mouth_open, FACE.mouth_half];
+  let idx = 0;
+  const mouth = document.getElementById('face-mouth');
+
+  function next() {
+    if (!isSpeaking) { mouth.src = FACE.mouth_closed; return; }
+    idx = (idx + 1) % states.length;
+    mouth.src = states[idx];
+    mouthTimer = setTimeout(next, 180);
+  }
+  next();
+}
+
+function stopMouthAnim() {
+  isSpeaking = false;
+  if (mouthTimer) clearTimeout(mouthTimer);
+  document.getElementById('face-mouth').src = FACE.mouth_closed;
+}
+
+// ═══════════════════════════════════════
+//  UI HELPERS
+// ═══════════════════════════════════════
+function addBubble(role, text) {
+  const area = document.getElementById('chat-area');
+  const div = document.createElement('div');
+  div.className = 'bubble ' + role;
+  div.textContent = text;
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+}
+
+function setStatus(msg) {
+  document.getElementById('status').textContent = msg;
+}
+
+function updateTurnLabel() {
+  document.getElementById('turn-label').textContent = `Turn ${currentTurn} / ${MAX_TURNS}`;
+}
+
+function disableInput(disabled) {
+  document.getElementById('text-input').disabled = disabled;
+  document.getElementById('send-btn').disabled = disabled;
+  document.getElementById('mic-btn').disabled = disabled;
+}
+
+function finishConversation() {
+  disableInput(true);
+  setTimeout(() => {
+    document.getElementById('finished-overlay').style.display = 'flex';
+  }, 1200);
+}
+
+function resetAll() {
+  document.getElementById('finished-overlay').style.display = 'none';
+  document.getElementById('conversation').style.display = 'none';
+  document.getElementById('setup').style.display = 'flex';
+  document.getElementById('credits-section').style.display = 'block';
+  document.getElementById('chat-area').innerHTML = '';
+  const btn = document.getElementById('start-btn');
+  btn.disabled = false;
+  btn.innerHTML = '<span class="icon">📷</span><span>Scan an Object</span>';
+  messages = [];
+  currentTurn = 0;
+  disableInput(false);
+  stopMouthAnim();
+  if (blinkTimer) clearTimeout(blinkTimer);
+}
+
+// ═══════════════════════════════════════
+//  IMAGE UTILS
+// ═══════════════════════════════════════
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const MAX = 800;
+        let w = img.width, h = img.height;
+        if (w > MAX || h > MAX) {
+          const ratio = Math.min(MAX/w, MAX/h);
+          w = Math.round(w * ratio);
+          h = Math.round(h * ratio);
+        }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', 0.7));
+      };
+      img.onerror = reject;
+      img.src = reader.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+</script>
 </body>
 </html>
