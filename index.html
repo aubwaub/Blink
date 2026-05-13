@@ -275,8 +275,8 @@
   /* Scene photo */
   #scene-photo {
     width: 100%;
-    max-height: 180px;
-    object-fit: cover;
+    max-height: 260px;
+    object-fit: contain;
     border-radius: 16px;
     box-shadow: var(--shadow);
     margin-bottom: 16px;
@@ -315,6 +315,11 @@
     background: var(--bubble-ai);
     border-bottom-left-radius: 6px;
   }
+  /* Bilingual text styling */
+  .bubble .tl-text { color: #0E0E0E; }
+  .bubble .en-text { color: #C4A02C; }
+  .bubble .tl-bold { color: #0E0E0E; font-weight: 700; }
+  .bubble .en-bold { color: #C4A02C; font-weight: 700; }
   .bubble.user {
     background: var(--bubble-user);
     border-bottom-right-radius: 6px;
@@ -527,11 +532,381 @@
     #speak-btn { width: 70px; height: 70px; font-size: 28px; }
     .speak-btn-wrap { width: 70px; height: 70px; }
   }
+
+  /* ══════════════════════════════════
+     SECTION 1: HERO + STICKER SHOWCASE
+  ══════════════════════════════════ */
+  #hero-section {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+  }
+
+  .hero-title {
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .hero-title h1 {
+    font-family: 'Tiro Bangla', serif;
+    font-size: 80px;
+    font-weight: 400;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .hero-title h1 em {
+    font-style: italic;
+    color: var(--accent-btn);
+  }
+  .hero-title .hero-tagline {
+    font-size: 16px;
+    font-weight: 400;
+    opacity: .45;
+    letter-spacing: .5px;
+  }
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: .25;
+    z-index: 10;
+    animation: float-hint 2s ease-in-out infinite;
+  }
+  @keyframes float-hint {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-6px); }
+  }
+
+  /* Sticker items */
+  .sticker-field {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+  }
+  .sticker {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform .25s cubic-bezier(.34,1.56,.64,1), filter .25s;
+    user-select: none;
+    -webkit-user-select: none;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,.1));
+    line-height: 1;
+  }
+  .sticker .sticker-emoji {
+    filter: drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 2.5px #fff) drop-shadow(0 0 1px #fff);
+  }
+  .sticker:hover {
+    transform: scale(1.3) rotate(0deg) !important;
+    filter: drop-shadow(0 6px 20px rgba(0,0,0,.18));
+    z-index: 20;
+  }
+
+  /* Speech bubble on hover */
+  .sticker .speech-bubble {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background: var(--accent-object);
+    color: var(--dark);
+    padding: 8px 14px;
+    border-radius: 14px;
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(247,219,120,.4);
+    opacity: 0;
+    transition: all .25s cubic-bezier(.34,1.56,.64,1);
+    pointer-events: none;
+  }
+  .sticker .speech-bubble::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--accent-object);
+  }
+  .sticker:hover .speech-bubble {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+  .speech-bubble .bubble-en {
+    font-size: 11px;
+    opacity: .5;
+    display: block;
+    font-weight: 400;
+    margin-top: 3px;
+    font-style: italic;
+  }
+  .speech-bubble .lang-flag {
+    font-size: 10px;
+    opacity: .4;
+    display: block;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  /* ══════════════════════════════════
+     SECTION 2: APP INTRODUCTION
+  ══════════════════════════════════ */
+  #intro-section {
+    width: 100%;
+    background: #fff;
+    padding: 80px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .intro-header {
+    text-align: center;
+    margin-bottom: 56px;
+    max-width: 560px;
+  }
+  .intro-header .section-tag {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: var(--accent-object);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 16px;
+  }
+  .intro-header h2 {
+    font-family: 'Tiro Bangla', serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .intro-header p {
+    font-size: 14px;
+    line-height: 1.7;
+    opacity: .55;
+  }
+
+  /* Feature cards */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    width: 100%;
+    margin-bottom: 56px;
+  }
+  .feature-card {
+    background: var(--bg);
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: transform .2s;
+  }
+  .feature-card:hover { transform: translateY(-4px); }
+  .feature-card .feat-icon {
+    font-size: 36px;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .feature-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .feature-card p {
+    font-size: 12px;
+    line-height: 1.6;
+    opacity: .55;
+  }
+
+  /* How it works - horizontal steps */
+  .flow-section {
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .flow-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+  }
+  .flow-step .flow-num {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700;
+    margin: 0 auto 12px;
+    color: #fff;
+  }
+  .flow-step.step-yellow .flow-num { background: var(--accent-object); color: var(--dark); }
+  .flow-step.step-blue .flow-num { background: var(--accent-user); color: var(--dark); }
+  .flow-step.step-green .flow-num { background: var(--accent-btn); color: #fff; }
+  .flow-step h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .flow-step p {
+    font-size: 12px;
+    line-height: 1.5;
+    opacity: .5;
+  }
+  .flow-arrow {
+    width: 24px;
+    min-width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 12px;
+    font-size: 18px;
+    opacity: .2;
+  }
+
+  /* Section divider */
+  .section-divider {
+    width: 100%;
+    padding: 48px 0;
+    text-align: center;
+    background: var(--bg);
+  }
+  .section-divider .try-tag {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 999px;
+    background: var(--dark);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  @media (max-width: 700px) {
+    .hero-title h1 { font-size: 56px; }
+    .sticker { width: 60px; height: 60px; font-size: 32px; }
+    .features-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .flow-section { flex-direction: column; align-items: center; }
+    .flow-arrow { transform: rotate(90deg); padding-top: 0; }
+  }
 </style>
 </head>
 <body>
 
-<!-- ════ SETUP SCREEN ════ -->
+<!-- ════════════════════════════════════════
+     SECTION 1: HERO + STICKER SHOWCASE
+════════════════════════════════════════ -->
+<div id="hero-section">
+  <div class="sticker-field" id="sticker-field">
+    <!-- Stickers positioned via JS -->
+  </div>
+  <div class="hero-title">
+    <h1>talk<em>IT</em></h1>
+    <p class="hero-tagline">Talk to the world around you</p>
+  </div>
+  <div class="hero-scroll-hint">Scroll to explore ↓</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     SECTION 2: APP INTRODUCTION
+════════════════════════════════════════ -->
+<div id="intro-section">
+  <div class="intro-header">
+    <div class="section-tag">How it works</div>
+    <h2>Every object has a story to tell</h2>
+    <p>talkIT turns everyday objects into your personal language teachers. Scan anything around you, and it comes alive to start a conversation in the language you're learning.</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feat-icon">📷</span>
+      <h3>Scan & Identify</h3>
+      <p>Point your camera at any object — AI recognizes it and creates an animated sticker teacher with personality.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feat-icon">💬</span>
+      <h3>Bilingual Conversations</h3>
+      <p>Your object speaks your target language, with key vocabulary highlighted. Ask in English anytime — it switches seamlessly.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feat-icon">🎤</span>
+      <h3>Voice & Text</h3>
+      <p>Speak or type — your choice. Hold-to-talk voice input with real-time transcription, or text mode for quieter moments.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feat-icon">🌍</span>
+      <h3>7 Languages</h3>
+      <p>French, Chinese, Spanish, Japanese, Korean, Hindi, and English — with locale-specific speech recognition.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feat-icon">⭐</span>
+      <h3>4 Difficulty Levels</h3>
+      <p>From kindergarten teacher (beginner) to witty native speaker (advanced) — each with its own personality.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feat-icon">🗂️</span>
+      <h3>Sticker Collection</h3>
+      <p>Every object becomes a collectible sticker saved to your calendar. Review past conversations anytime.</p>
+    </div>
+  </div>
+
+  <div class="intro-header" style="margin-bottom:24px">
+    <div class="section-tag">The flow</div>
+    <h2>From photo to fluency</h2>
+  </div>
+  <div class="flow-section">
+    <div class="flow-step step-yellow">
+      <div class="flow-num">1</div>
+      <h4>Scan</h4>
+      <p>Take a photo of any object around you</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step step-blue">
+      <div class="flow-num">2</div>
+      <h4>Meet</h4>
+      <p>It comes alive as an animated sticker teacher</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step step-green">
+      <div class="flow-num">3</div>
+      <h4>Talk</h4>
+      <p>3-turn voice or text conversation in your target language</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step step-yellow">
+      <div class="flow-num">4</div>
+      <h4>Collect</h4>
+      <p>Save the sticker and review your new vocabulary</p>
+    </div>
+  </div>
+</div>
+
+<!-- Section divider -->
+<div class="section-divider">
+  <span class="try-tag">✦ Try it yourself ✦</span>
+</div>
+
+<!-- ════ SETUP SCREEN (Section 3: Demo) ════ -->
 <div id="setup">
   <div class="hero">
     <h1>talk<em>IT</em></h1>
@@ -558,10 +933,10 @@
       <div class="info-left">
         <span class="label">I'm learning</span>
         <select id="learning-lang">
+          <option value="French">French</option>
           <option value="Mandarin Chinese">Chinese</option>
           <option value="English">English</option>
           <option value="Spanish">Spanish</option>
-          <option value="French">French</option>
           <option value="Japanese">Japanese</option>
           <option value="Korean">Korean</option>
         </select>
@@ -674,33 +1049,30 @@
 //  DIFFICULTY PROMPTS
 // ═══════════════════════════════════════
 const LEVEL_PROMPTS = {
-  beginner: `LEVEL: BEGINNER
-- Use only the most basic, high-frequency words (top 200 words).
-- Speak in very short phrases (3-5 words max per sentence).
-- Repeat key vocabulary multiple times naturally.
-- Ask yes/no questions or simple either/or questions only.
-- If correcting, show the correct word alone, no grammar explanation.`,
-  elementary: `LEVEL: ELEMENTARY
-- Use basic daily vocabulary (top 500-800 words).
-- Speak in simple but complete sentences (5-10 words).
-- Ask simple open-ended questions (what, where, when — not why/how).
-- Introduce 1 new word per exchange and use it in context.
-- When correcting, briefly show the correct phrase.
-- Stick to present tense and basic sentence structures.`,
-  intermediate: `LEVEL: INTERMEDIATE
-- Use natural, everyday vocabulary freely.
-- Speak in full sentences with varied grammar (past, future, conditionals).
-- Ask open-ended questions that require longer answers.
-- Use common expressions and colloquialisms naturally.
-- When correcting, explain briefly why the correction matters.
-- Challenge the user to express opinions, not just facts.`,
-  advanced: `LEVEL: ADVANCED
-- Speak as a native speaker would — natural speed, complex structures.
-- Use idioms, proverbs, wordplay, and cultural references.
-- Discuss abstract ideas: feelings, memories, hypotheticals.
-- Ask thought-provoking questions that require nuanced answers.
-- When correcting, point out subtle nuances (register, connotation, formality).
-- Use relative clauses, subjunctive, and varied sentence structures.`
+  beginner: `LEVEL: BEGINNER (Kindergarten teacher energy)
+PERSONALITY: Warm, encouraging, celebrates every attempt. Like a kindergarten teacher who gets excited when you say a new word.
+RESPONSE LENGTH: 1 SHORT sentence + 1 question. Max 15 words total. This is critical — do NOT write more.
+VOCABULARY: Top 200 most common words only. No complex grammar.
+QUESTIONS: Yes/no or either/or only. "Do you like X?" "X or Y?"
+HIGHLIGHTS: Bold **2 key words** per message — basic nouns and verbs the student should memorize.`,
+  elementary: `LEVEL: ELEMENTARY (Patient tutor)
+PERSONALITY: Friendly and patient. Explains things simply. Like a supportive older sibling helping with homework.
+RESPONSE LENGTH: 1-2 short sentences + 1 question. Max 25 words total.
+VOCABULARY: Top 500-800 words. Simple present and past tense only.
+QUESTIONS: Simple open-ended (what, where, when — not why/how yet).
+HIGHLIGHTS: Bold **2-3 key words** per message — daily vocabulary plus one new word to learn.`,
+  intermediate: `LEVEL: INTERMEDIATE (Coffee shop friend)
+PERSONALITY: Natural and conversational. Like chatting with a friend at a café. Uses casual language and reacts genuinely.
+RESPONSE LENGTH: 2-3 sentences + 1 question. Max 40 words.
+VOCABULARY: Natural everyday vocabulary. All tenses, some idioms.
+QUESTIONS: Open-ended, opinion-based. "What do you think about…?" "How do you feel when…?"
+HIGHLIGHTS: Bold **2-3 key words** per message — daily vocabulary, expressions, and one new useful word.`,
+  advanced: `LEVEL: ADVANCED (Witty native speaker)
+PERSONALITY: Sharp, witty, culturally aware. Uses wordplay, references pop culture, teases gently. Like talking to a clever local friend.
+RESPONSE LENGTH: 2-3 sentences + 1 thought-provoking question. Max 50 words.
+VOCABULARY: Full native range — idioms, slang, proverbs, double meanings.
+QUESTIONS: Abstract, philosophical, hypothetical. Challenge the user to think deeply.
+HIGHLIGHTS: Bold **3-4 key words** per message — idioms, cultural expressions, puns, and useful phrases worth remembering.`
 };
 
 // ═══════════════════════════════════════
@@ -709,7 +1081,7 @@ const LEVEL_PROMPTS = {
 const API_BASE = 'https://talkit.runan-wang.workers.dev';
 
 let nativeLang = 'English';
-let learningLang = 'Mandarin Chinese';
+let learningLang = 'French';
 let difficulty = 'beginner';
 let messages = [];
 let currentTurn = 0;
@@ -767,8 +1139,8 @@ async function processPhoto(file) {
     const opening = await chatCompletion(messages);
     messages.push({ role: 'assistant', content: opening });
 
-    // Get translation
-    const translation = await translateText(opening);
+    // Get translation (strip markup for clean translation)
+    const translation = await translateText(stripBilingualMarkup(opening));
     addAssistantBubble(opening, translation);
     setStatus('');
 
@@ -817,7 +1189,7 @@ async function chatCompletion(msgs) {
   const resp = await fetch(API_BASE + '/v1/chat/completions', {
     method:'POST',
     headers:{ 'Content-Type':'application/json' },
-    body:JSON.stringify({ model:'gpt-4o', messages:apiMsgs, max_tokens:150, temperature:0.8 })
+    body:JSON.stringify({ model:'gpt-4o', messages:apiMsgs, max_tokens:250, temperature:0.8 })
   });
   if (!resp.ok) throw new Error('Chat API error: '+resp.status);
   const data = await resp.json();
@@ -870,28 +1242,46 @@ async function ttsAudio(text) {
 // ═══════════════════════════════════════
 function buildSystemPrompt(id) {
   const desc = id.sceneDescription || id.sourceWord;
-  return `You are a friendly, curious language teacher. The user just took a photo of: ${desc}.
-You should talk about this scene/object naturally — what you see, ask about their experience with it, discuss related topics.
+  return `You are ${id.sceneName || id.sourceWord} — literally this scene/object, alive and talking. You have a real personality.
 
 LANGUAGE RULE — THIS IS THE MOST IMPORTANT RULE:
-By default, every word you say MUST be in ${learningLang}. No mixing with other languages.
-EXCEPTION: If the user asks you something in ${nativeLang} or English (e.g. "how do you say…?"), answer in the same language they used. Then switch back to ${learningLang}.
+You are a bilingual teacher who primarily speaks ${learningLang} but also uses English to help.
+
+DEFAULT: Speak in ${learningLang}.
+
+WHEN USER WRITES IN ENGLISH: Answer their question/comment in English FIRST, then continue the rest of your response (reaction + next question) in ${learningLang}. This makes you feel like a real bilingual teacher — you meet them where they are, then guide them back to immersion.
+
+STUDENT QUESTIONS IN ENGLISH: When the user asks a learning question in English — like "how do you say X?", "what does Y mean?", "is this correct?", "what's the difference between A and B?" — answer the question thoroughly in English (wrapped in [EN] tags). Then smoothly return to the ORIGINAL conversation topic in ${learningLang} and continue as if the detour didn't happen.
+
+FORMATTING RULES (CRITICAL — follow these EXACTLY in EVERY single message):
+1. [EN] TAGS: Wrap ALL English text in [EN]...[/EN] tags. Every English word must be inside these tags. NEVER put [EN] tags around ${learningLang} text.
+
+2. **BOLD HIGHLIGHTS** — THIS IS MANDATORY IN EVERY RESPONSE, NO EXCEPTIONS:
+   Every single message MUST contain **bold** markers on key words.
+   - Bold 2-4 key vocabulary words per message using **double asterisks**
+   - Bold words in BOTH ${learningLang} AND English portions
+   - What to bold: new vocabulary, topic-relevant nouns/verbs, words the user should memorize
+
+3. Example (bilingual): "[EN]Great question! A **kettle** is used for **boiling** water.[/EN] 对，**水壶**是用来**烧水**的。你平时用**水壶**做什么？"
+4. Example (learning lang only): "哇，你的**水壶**很酷！你每天都用它**烧水**吗？"
+5. The ✦ correction format is still used as before, and the corrected word should also be bolded with **.
 
 CORE RULE: Your job is to get the USER talking, not to talk a lot yourself.
 
 ${LEVEL_PROMPTS[difficulty]}
 
-HOW TO TALK:
-- Keep responses to 1-2 SHORT sentences + a question. Never more.
-- ALWAYS end with a clear, easy-to-answer question related to the scene.
-- React briefly to what the user said, then ask your next question.
+CONVERSATION STYLE:
+- ALWAYS end with a clear question about ${id.sourceWord} or related daily life.
+- React to what the user said first, then ask your next question.
+- Stay on topic — everything should relate to ${desc} and the user's real life with it.
+- Follow the RESPONSE LENGTH rule from your level above — this is critical.
 
 FEEDBACK:
-If the user makes ANY grammar, vocabulary, or pronunciation mistake, you MUST gently correct them before continuing. Use this format: "✦ [correct version]" on its own line, then continue your response. Keep the correction brief.
+ONLY correct the user when there is a CLEAR grammar or vocabulary mistake. Do NOT repeat or rephrase what the user said if it is already correct. When you DO need to correct, use: "✦ [correct version]" on its own line, then continue. If the user's sentence is fine, do NOT use ✦.
 
-You have ${MAX_TURNS} exchanges. Fun fact to weave in: ${id.funFact}
+You have ${MAX_TURNS} exchanges. Fun fact to weave in naturally: ${id.funFact}
 
-START with one fun observation about what you see in the photo, then immediately ask the user a simple question about it. Keep it short! Remember: ONLY ${learningLang}.`;
+START with one fun sentence about yourself as a ${id.sourceWord}, then ask the user a question. For the opening message, speak ONLY in ${learningLang} (no [EN] tags needed). You MUST bold **2-4 key words** in your opening.`;
 }
 
 // ═══════════════════════════════════════
@@ -921,7 +1311,7 @@ async function handleUserMessage(text) {
     const response = await chatCompletion(messages);
     messages.push({ role:'assistant', content:response });
 
-    const translation = await translateText(response);
+    const translation = await translateText(stripBilingualMarkup(response));
     addAssistantBubble(response, translation);
     setStatus('');
 
@@ -1085,6 +1475,74 @@ async function playBubbleAudio(text, btnEl) {
 // ═══════════════════════════════════════
 //  UI HELPERS
 // ═══════════════════════════════════════
+// ═══════════════════════════════════════
+//  BILINGUAL TEXT RENDERING
+// ═══════════════════════════════════════
+function renderBilingualHTML(text) {
+  // Parse [EN]...[/EN] tags and **bold** markers into styled HTML
+  let html = '';
+  let i = 0;
+  let inEnglish = false;
+
+  while (i < text.length) {
+    // Check for [EN] tag
+    if (text.substring(i, i + 4) === '[EN]') {
+      inEnglish = true;
+      i += 4;
+      continue;
+    }
+    // Check for [/EN] tag
+    if (text.substring(i, i + 5) === '[/EN]') {
+      inEnglish = false;
+      i += 5;
+      continue;
+    }
+    // Check for **bold**
+    if (text.substring(i, i + 2) === '**') {
+      const end = text.indexOf('**', i + 2);
+      if (end !== -1) {
+        const boldText = text.substring(i + 2, end);
+        const colorClass = inEnglish ? 'en-bold' : 'tl-bold';
+        html += `<strong class="${colorClass}">${escapeHTML(boldText)}</strong>`;
+        i = end + 2;
+        continue;
+      }
+    }
+    // Regular character
+    const char = text[i];
+    if (char === '\n') {
+      html += '<br>';
+    } else {
+      const colorClass = inEnglish ? 'en-text' : 'tl-text';
+      // Batch consecutive same-type characters
+      let j = i + 1;
+      while (j < text.length &&
+             text.substring(j, j + 4) !== '[EN]' &&
+             text.substring(j, j + 5) !== '[/EN]' &&
+             text.substring(j, j + 2) !== '**' &&
+             text[j] !== '\n') {
+        j++;
+      }
+      html += `<span class="${colorClass}">${escapeHTML(text.substring(i, j))}</span>`;
+      i = j;
+      continue;
+    }
+    i++;
+  }
+  return html;
+}
+
+function escapeHTML(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function stripBilingualMarkup(text) {
+  return text
+    .replace(/\[EN\]/g, '')
+    .replace(/\[\/EN\]/g, '')
+    .replace(/\*\*/g, '');
+}
+
 function addAssistantBubble(text, translation) {
   const area = document.getElementById('chat-area');
   const group = document.createElement('div');
@@ -1092,10 +1550,10 @@ function addAssistantBubble(text, translation) {
 
   const bubble = document.createElement('div');
   bubble.className = 'bubble assistant';
-  bubble.textContent = text;
+  bubble.innerHTML = renderBilingualHTML(text);
   group.appendChild(bubble);
 
-  // Translation
+  // Translation (strip markup for clean display)
   const trans = document.createElement('div');
   trans.className = 'bubble-translation';
   trans.textContent = translation || '';
@@ -1107,12 +1565,14 @@ function addAssistantBubble(text, translation) {
   const playBtn = document.createElement('button');
   playBtn.className = 'play-btn';
   playBtn.textContent = '▶';
-  playBtn.onclick = () => playBubbleAudio(text, playBtn);
+  const cleanText = stripBilingualMarkup(text);
+  playBtn.onclick = () => playBubbleAudio(cleanText, playBtn);
   actions.appendChild(playBtn);
   group.appendChild(actions);
 
   area.appendChild(group);
   area.scrollTop = area.scrollHeight;
+
 }
 
 function addUserBubble(text) {
@@ -1191,6 +1651,148 @@ function fileToBase64(file) {
     reader.readAsDataURL(file);
   });
 }
+
+// ═══════════════════════════════════════
+//  STICKER SHOWCASE (Section 1)
+// ═══════════════════════════════════════
+// Each sticker has: emoji, size (px), position (% from left, % from top), rotation (deg), greetings
+const STICKERS = [
+  { emoji:'☕', size:64, x:4, y:8, rot:-8, greetings:[
+    { text:'Un café, s\'il vous plaît!', en:'A coffee, please!', lang:'French' },
+    { text:'来杯咖啡吧！', en:'Let\'s have some coffee!', lang:'Chinese' },
+    { text:'コーヒーはいかが？', en:'How about a coffee?', lang:'Japanese' }
+  ]},
+  { emoji:'📷', size:52, x:18, y:3, rot:12, greetings:[
+    { text:'Souriez!', en:'Smile!', lang:'French' },
+    { text:'치즈!', en:'Cheese!', lang:'Korean' },
+    { text:'¡Sonríe!', en:'Smile!', lang:'Spanish' }
+  ]},
+  { emoji:'🎸', size:70, x:78, y:62, rot:-14, greetings:[
+    { text:'¡A tocar música!', en:'Let\'s play music!', lang:'Spanish' },
+    { text:'弹一首吧！', en:'Play a song!', lang:'Chinese' },
+    { text:'弾こうよ！', en:'Let\'s play!', lang:'Japanese' }
+  ]},
+  { emoji:'🌻', size:58, x:8, y:55, rot:10, greetings:[
+    { text:'Qué bonita flor!', en:'What a pretty flower!', lang:'Spanish' },
+    { text:'真漂亮！', en:'So beautiful!', lang:'Chinese' },
+    { text:'きれいなお花！', en:'Beautiful flower!', lang:'Japanese' }
+  ]},
+  { emoji:'📚', size:48, x:82, y:5, rot:-5, greetings:[
+    { text:'Lisons ensemble!', en:'Let\'s read together!', lang:'French' },
+    { text:'一起读书吧！', en:'Let\'s read together!', lang:'Chinese' },
+    { text:'같이 읽자!', en:'Let\'s read together!', lang:'Korean' }
+  ]},
+  { emoji:'⏰', size:62, x:88, y:30, rot:8, greetings:[
+    { text:'Quelle heure est-il?', en:'What time is it?', lang:'French' },
+    { text:'几点了？', en:'What time is it?', lang:'Chinese' },
+    { text:'何時ですか？', en:'What time is it?', lang:'Japanese' }
+  ]},
+  { emoji:'🎂', size:54, x:85, y:72, rot:-10, greetings:[
+    { text:'Joyeux anniversaire!', en:'Happy birthday!', lang:'French' },
+    { text:'생일 축하해요!', en:'Happy birthday!', lang:'Korean' },
+    { text:'お誕生日おめでとう！', en:'Happy birthday!', lang:'Japanese' }
+  ]},
+  { emoji:'🏀', size:60, x:72, y:82, rot:6, greetings:[
+    { text:'Jouons ensemble!', en:'Let\'s play together!', lang:'French' },
+    { text:'打球吗？', en:'Wanna play ball?', lang:'Chinese' },
+    { text:'¡Vamos a jugar!', en:'Let\'s play!', lang:'Spanish' }
+  ]},
+  { emoji:'🎧', size:56, x:52, y:15, rot:-12, greetings:[
+    { text:'Écoutez cette chanson!', en:'Listen to this song!', lang:'French' },
+    { text:'听首歌吧！', en:'Let\'s listen to a song!', lang:'Chinese' },
+    { text:'음악 들을래?', en:'Wanna listen to music?', lang:'Korean' }
+  ]},
+  { emoji:'🍞', size:44, x:35, y:5, rot:15, greetings:[
+    { text:'Du pain frais!', en:'Fresh bread!', lang:'French' },
+    { text:'焼きたてのパン！', en:'Freshly baked bread!', lang:'Japanese' },
+    { text:'¡Pan recién hecho!', en:'Freshly made bread!', lang:'Spanish' }
+  ]},
+  { emoji:'🌍', size:66, x:3, y:32, rot:-6, greetings:[
+    { text:'Bonjour le monde!', en:'Hello world!', lang:'French' },
+    { text:'你好世界！', en:'Hello world!', lang:'Chinese' },
+    { text:'세계야 안녕!', en:'Hello world!', lang:'Korean' }
+  ]},
+  { emoji:'🧸', size:72, x:15, y:72, rot:4, greetings:[
+    { text:'Fais-moi un câlin!', en:'Give me a hug!', lang:'French' },
+    { text:'抱っこして！', en:'Hold me!', lang:'Japanese' },
+    { text:'¡Abrázame!', en:'Hug me!', lang:'Spanish' }
+  ]},
+  { emoji:'🎨', size:50, x:30, y:80, rot:-18, greetings:[
+    { text:'Peignons!', en:'Let\'s paint!', lang:'French' },
+    { text:'그림 그리자!', en:'Let\'s draw!', lang:'Korean' },
+    { text:'描きましょう！', en:'Let\'s draw!', lang:'Japanese' }
+  ]},
+  { emoji:'✈️', size:68, x:60, y:78, rot:20, greetings:[
+    { text:'Bon voyage!', en:'Have a good trip!', lang:'French' },
+    { text:'旅途愉快！', en:'Happy travels!', lang:'Chinese' },
+    { text:'¡Buen viaje!', en:'Have a good trip!', lang:'Spanish' }
+  ]},
+  { emoji:'🧲', size:42, x:92, y:52, rot:-15, greetings:[
+    { text:'Ça m\'attire!', en:'I\'m attracted!', lang:'French' },
+    { text:'끌려요!', en:'I\'m drawn to it!', lang:'Korean' },
+    { text:'引き寄せる！', en:'Pull me closer!', lang:'Japanese' }
+  ]},
+  { emoji:'🪴', size:56, x:22, y:28, rot:7, greetings:[
+    { text:'Arrosez-moi!', en:'Water me!', lang:'French' },
+    { text:'给我浇水！', en:'Water me!', lang:'Chinese' },
+    { text:'¡Riégame!', en:'Water me!', lang:'Spanish' }
+  ]},
+  { emoji:'🎹', size:50, x:65, y:8, rot:-9, greetings:[
+    { text:'Jouons du piano!', en:'Let\'s play piano!', lang:'French' },
+    { text:'ピアノ弾こう！', en:'Let\'s play piano!', lang:'Japanese' },
+    { text:'피아노 치자!', en:'Let\'s play piano!', lang:'Korean' }
+  ]},
+  { emoji:'🧁', size:46, x:45, y:82, rot:12, greetings:[
+    { text:'C\'est délicieux!', en:'It\'s delicious!', lang:'French' },
+    { text:'好好吃！', en:'So yummy!', lang:'Chinese' },
+    { text:'おいしい！', en:'Delicious!', lang:'Japanese' }
+  ]},
+  { emoji:'🔑', size:40, x:50, y:25, rot:-20, greetings:[
+    { text:'Ouvre la porte!', en:'Open the door!', lang:'French' },
+    { text:'开门吧！', en:'Open the door!', lang:'Chinese' },
+    { text:'문 열어!', en:'Open the door!', lang:'Korean' }
+  ]},
+  { emoji:'🎭', size:58, x:38, y:68, rot:5, greetings:[
+    { text:'Quel drame!', en:'What a drama!', lang:'French' },
+    { text:'好戏开场！', en:'The show begins!', lang:'Chinese' },
+    { text:'¡Qué drama!', en:'What a drama!', lang:'Spanish' }
+  ]},
+];
+
+function initStickers() {
+  const field = document.getElementById('sticker-field');
+  if (!field) return;
+  field.innerHTML = '';
+
+  STICKERS.forEach(s => {
+    const greeting = s.greetings[Math.floor(Math.random() * s.greetings.length)];
+
+    const el = document.createElement('div');
+    el.className = 'sticker';
+    el.style.left = s.x + '%';
+    el.style.top = s.y + '%';
+    el.style.fontSize = s.size + 'px';
+    el.style.transform = `rotate(${s.rot}deg)`;
+    el.innerHTML = `
+      <span class="sticker-emoji">${s.emoji}</span>
+      <div class="speech-bubble">
+        ${greeting.text}
+        <span class="bubble-en">${greeting.en}</span>
+        <span class="lang-flag">${greeting.lang}</span>
+      </div>
+    `;
+
+    // Randomize greeting on each hover
+    el.addEventListener('mouseenter', () => {
+      const g = s.greetings[Math.floor(Math.random() * s.greetings.length)];
+      el.querySelector('.speech-bubble').innerHTML = `${g.text}<span class="bubble-en">${g.en}</span><span class="lang-flag">${g.lang}</span>`;
+    });
+
+    field.appendChild(el);
+  });
+}
+
+window.addEventListener('load', initStickers);
 </script>
 </body>
 </html>
